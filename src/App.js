@@ -1,10 +1,9 @@
-import './screens/components/Login/Login'
-import './screens/components/Login/Login.css'
 import Login from "./screens/components/Login/Login";
+import Home from "./screens/components/Home/Home";
 
 function App() {
   return (
-    <Login/>
+    <Home/>
   );
 }
 
