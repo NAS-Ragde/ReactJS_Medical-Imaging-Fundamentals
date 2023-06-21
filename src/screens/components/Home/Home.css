@@ -12,6 +12,16 @@
     font-weight: 400;
     color: white;
 }
+.logout-button {
+    background-image: url('/assets/logout.png');
+    background-size: cover;
+    background-color: #FF9966;
+    border: none;
+    margin-left: 15px;
+    width: 35px;
+    height: 35px;
+    justify-content: center;
+}
 
 .container {
     display: flex;

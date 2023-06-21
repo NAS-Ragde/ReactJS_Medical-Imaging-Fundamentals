@@ -1,5 +1,4 @@
 import './Home.css'
-
 export default function Home() {
 
     const welcomeText = 'This course is prepared to give you fundamental insights about Medical Imaging.';
@@ -98,7 +97,12 @@ export default function Home() {
         <div>
             <div className={'header'}>
                 <p className={'header-title'}>Home</p>
-                <p className={'header-title'}>Exit</p>
+                <p className={'header-title'}>Exit
+                    <button
+                        className={'logout-button'}
+                        onClick={()=>{}}
+                    />
+                </p>
 
             </div>
 
