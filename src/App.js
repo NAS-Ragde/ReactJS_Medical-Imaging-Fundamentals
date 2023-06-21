@@ -1,10 +1,10 @@
-//import Login from "./screens/components/Login/Login";
-import Home from "./screens/components/Home/Home";
+import React from 'react';
+// import Login from "./screens/components/Login/Login";
+import Registration from "./screens/components/Registration/Registration";
 
 function App() {
   return (
-    <Home/>
+    <Registration />
   );
 }
-
 export default App;
