@@ -1,10 +1,27 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-padding: 35px;
+    padding-inline: 40px;
+    background-color: #FF9966;
+}
+
+.header-title{
+    font-size: 25px;
+    font-weight: 400;
+    color: white;
+}
+
 .container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-content: center;
     backgroundColor: #FCFCFC;
     padding-inline: 30px;
     padding-top: 30px;
-    height: 100vh;
+    max-height: 100vh;
 }
 
 .textWrapper {
@@ -15,54 +32,52 @@
     border-color: #E66A16;
     border-radius: 8px;
     margin-bottom: 30px;
-    padding-inline: 20px;
 }
-.header {
-    font-weight: bold;
+.welcome {
     color: #3B3838;
-    text-align: start;
+    padding-left: 20px;
+    margin-bottom: -20px;
 }
 
-.textHeader {
+.course-text {
     font-size: 22px;
     font-weight: 500;
     color: #3B3838;
     text-align: start;
-    padding-left: 4px;
+    padding-inline: 20px;
 }
 
-.footer {
-
+.table{
     display: flex;
-    align-content: center;
-    height: 150px;
-    border: none;
-    margin-top: 30px;
-    background :linear-gradient( to right, #E23E02, #FF7F50, #F89B29 );
+    min-width: 70vw;
+    min-height: 40vh;
+    margin: 10px;
+    align-items: center;
 }
 
-.footerText {
-    color: #FCFCFC;
-    font-size: 14px;
-    align-self: center;
-    text-align: center;
-}
-
-.content-list {
-    display: flex;
-    flex-direction: column;
-    padding-: 15px;
-    margin-inside: 5px;
-    min-height: 50vh;
-
-}
-.text {
-    text-align: start;
+.tr-text {
     font-weight: 500;
     font-size: 20px;
-    color: #3B3838;
-    padding-bottom: 5px ;
+    padding: 10px;
+    background-color: #ca6702;
 }
+
+.list-id {
+    width: 5vw;
+    text-align: right;
+    padding: 10px;
+}
+.list-title {
+    width: 70vw;
+    text-align: left;
+    padding: 10px;
+}
+.list-status {
+    width: 10vw;
+    text-align: left;
+    padding: 10px;
+}
+
 .start-button{
     color: #E66A16;
     font-size: 30px;
@@ -71,4 +86,21 @@
     align-self: center;
     width: 300px;
     padding-bottom: 20px;
+    margin-bottom: 10px ;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    border: none;
+    background :linear-gradient( to right, #E23E02, #FF7F50, #F89B29 );
+}
+
+.footerText {
+    color: #FCFCFC;
+    font-size: 14px;
+    align-self: center;
+    text-align: center;
 }

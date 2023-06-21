@@ -76,54 +76,53 @@ export default function Home() {
 
     const ListOfChapters = ({chapters}) => {
         return (
-            <div className={'content-list'}>
+            <table className={'table'} >
+                <tbody>
                 {
                     chapters.map((chapters) => (
-                            <li key={chapters.id} className={'text'}>
-                                <span className={'id'}>{ chapters.id }{'\n'}</span>
-                                <span className={'title'}>{ chapters.title }{'\n'}</span>
-                            </li>
+                            <tr key={chapters.id}  className={'tr-text'} >
+                                <td className={'list-id'}>{ chapters.id}. </td>
+                                <td className={'list-title'}>{ chapters.title }</td>
+                                <td className={'list-status'}>Status</td>
+                            </tr>
                         )
                     )
                 }
-
-            </div>
+                </tbody>
+            </table>
         );
 
     }
 
-    const Footer = () => {
-        return (
+    return (
+        <div>
+            <div className={'header'}>
+                <p className={'header-title'}>Home</p>
+                <p className={'header-title'}>Exit</p>
+
+            </div>
+
+            <div className={'container'}>
+
+                <div className={'textWrapper'}>
+                    <h1 className={'welcome'}>Welcome,</h1>
+                    <p className={'course-text'}>{welcomeText}</p>
+                </div>
+
+                <div className={'textWrapper'}>
+                    <ListOfChapters chapters={chapters}/>
+                </div>
+
+                <span className={'start-button'}> Get Started </span>
+
+            </div>
+
             <div className={'footer'}>
                 <p className={'footerText'}>© 2023 Nayeli A. Silva, Inc.</p>
             </div>
-        );
-    };
-
-
-    return (
-        <div className={'container'}>
-
-            <div className={'textWrapper'}>
-                <h1 className={'header'}>Welcome!</h1>
-                <h3 className={'textHeader'}>{welcomeText}</h3>
-            </div>
-
-            {/* Wrapper to show quiz */}
-
-            <div className={'textWrapper'}>
-                <ListOfChapters chapters={chapters}/>
-            </div>
-
-            <span className={'start-button'}>
-                Get Started
-            </span>
-
-            <div>
-                {<Footer/>}
-            </div>
 
         </div>
+
 
     );
 }
