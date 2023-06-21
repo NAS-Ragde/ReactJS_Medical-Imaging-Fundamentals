@@ -53,13 +53,14 @@
     min-height: 40vh;
     margin: 10px;
     align-items: center;
+    justify-content: space-evenly;
 }
 
 .tr-text {
     font-weight: 500;
-    font-size: 20px;
+    font-size: 22px;
     padding: 10px;
-    background-color: #ca6702;
+    color: #6A6969;
 }
 
 .list-id {
@@ -68,7 +69,8 @@
     padding: 10px;
 }
 .list-title {
-    width: 70vw;
+    max-width: 70vw;
+    min-width: 50vw;
     text-align: left;
     padding: 10px;
 }
@@ -85,15 +87,14 @@
     text-align: center;
     align-self: center;
     width: 300px;
-    padding-bottom: 20px;
-    margin-bottom: 10px ;
+    margin-bottom: 40px ;
 }
 
 .footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 50px;
+    padding: 42px;
     border: none;
     background :linear-gradient( to right, #E23E02, #FF7F50, #F89B29 );
 }
