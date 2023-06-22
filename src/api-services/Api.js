@@ -5,6 +5,6 @@ export const STUDENTS_REGISTRATION = 'http://localhost:8080/students/register';
 export const CHAPTERS = 'http://localhost:8080/chapters';
 export const QUIZ = 'http://localhost:8080/quizes';
 
-export const auth_UUID = '4784cb09-a9b6-4003-8861-daf2d54d1718';
-export const auth_USER = 'nayeli'
+export const auth_UUID = '941f1bbd-558c-463d-9e8e-d47c3b8055d6';
+export const auth_USER = 'nayeli.silva-preciado@stud.th-deg.de';
 
