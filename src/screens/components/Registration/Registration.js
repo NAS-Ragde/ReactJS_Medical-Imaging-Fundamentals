@@ -3,9 +3,11 @@ import './Registration.css'
 import {useForm} from "react-hook-form";
 import axios from "axios";
 import {STUDENTS_REGISTRATION} from "../../../api-services/Api";
+import {Link} from "react-router-dom";
 export default function Registration () {
 
-     const [email, setEmail] = useState('');
+     const [getEmail, setEmail] = useState('');
+
      const [password, setPassword] = useState('');
      const [confirmPassword, setConfirmPassword] = useState('');
      let [isValidated] = useState('false');
@@ -36,6 +38,12 @@ export default function Registration () {
         return console.log('process incomplete', value)
     }
 
+    const readdressing = () => {
+        return (
+            <Link to = "../Home/Home.js" />
+        );
+    }
+
     const onSubmit = async (data) => {
         console.log(data);
 
@@ -43,7 +51,12 @@ export default function Registration () {
 
             await axios
                 .post(STUDENTS_REGISTRATION + "?username=" + data.email + "&password=" + data.password)
-                .then ((response) => console.log('Posted:', response.data))
+                .then ((response) => {
+                        console.log('Posted:', response.data);
+                        setEmail(response.data.email);
+                        readdressing();
+                    }
+                )
                 .catch((error) => {
                     console.log(error);
                 })
