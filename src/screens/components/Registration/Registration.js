@@ -38,7 +38,7 @@ export default function Registration () {
     return(
         <div className="background">
             <div className="loginWrapper">
-                <h1 className="header"> Registration </h1>
+                <h1 className="headerRegistration"> Registration </h1>
 
                 <input
                     {...register("email", {required: true}) }

@@ -13,7 +13,7 @@ export default function Login() {
     return (
         <div className="background">
             <div className="loginWrapper">
-                <h1 className="header"> Fundamentals of Medical Imaging Management </h1>
+                <h1 className="headerLogin"> Fundamentals of Medical Imaging Management </h1>
                 <input
                     placeholder="User"
                     className="textInput"

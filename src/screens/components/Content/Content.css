@@ -1,0 +1,70 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 40px;
+    background-color: #FF9966;
+}
+
+.headerContent{
+    font-size: 25px;
+    font-weight: 400;
+    color: white;
+}
+.homeButton {
+    background-image: url('/assets/home-button.png');
+    background-size: cover;
+    background-color: #FF9966;
+    border: none;
+    margin-left: 15px;
+    width: 35px;
+    height: 35px;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    backgroundColor: #FCFCFC;
+    padding-inline: 30px;
+    padding-top: 10px;
+    min-height: 90vh;
+    margin-left: 30px;
+    margin-right: 30px ;
+}
+.title{
+    font-size: 35px;
+    font-weight: bold;
+    color: #3B3838;
+    padding-bottom:20px,
+}
+.subtitle{
+    font-size: 20px;
+    font-weight: 600;
+    font-style: italic;
+    color: #3B3838;
+    padding-bottom:20px,
+
+}
+.text{
+    font-weight: 400;
+    text-align: justify;
+    font-size: 18px;
+    color: #3B3838;
+}
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1vh;
+    border: none;
+    background :linear-gradient( to right, #E23E02, #FF7F50, #F89B29 );
+}
+
+.footerText {
+    color: #FCFCFC;
+    font-size: 14px;
+    align-self: center;
+    text-align: center;
+}
