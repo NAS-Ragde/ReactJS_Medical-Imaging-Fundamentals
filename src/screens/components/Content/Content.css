@@ -22,36 +22,38 @@
     justify-content: center;
 }
 
-.container {
+.body-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    backgroundColor: #FCFCFC;
+    background-color: #FCFCFC;
     padding-inline: 30px;
     padding-top: 10px;
     min-height: 90vh;
     margin-left: 30px;
     margin-right: 30px ;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .title{
     font-size: 35px;
     font-weight: bold;
     color: #3B3838;
-    padding-bottom:20px,
 }
 .subtitle{
     font-size: 20px;
     font-weight: 600;
     font-style: italic;
     color: #3B3838;
-    padding-bottom:20px,
-
 }
 .text{
     font-weight: 400;
     text-align: justify;
     font-size: 18px;
     color: #3B3838;
+    white-space: pre-line;
 }
 .footer {
     display: flex;
