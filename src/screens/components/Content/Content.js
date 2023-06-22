@@ -18,16 +18,18 @@ export default function Content() {
                 />
             </div>
 
-
-            <div className={'body-container'}>
-                <h1 className={'title'} > Introduction to Medical Imaging and its modalities </h1>
-                <p className={'subtitle'}> Image acquisition and techniques  </p>
-                <p className={'text'}>{subtitle1}</p>
+            <div className={'soft-container'}>
+                <div className={'body-container'}>
+                    <h1 className={'title'} > Introduction to Medical Imaging and its modalities </h1>
+                    <p className={'subtitle'}> Image acquisition and techniques  </p>
+                    <p className={'text'}>{subtitle1}</p>
+                </div>
             </div>
 
 
 
-            <div className={'footer'}>
+
+            <div className={'footer-content'}>
                 <p className={'footerText'}>© 2023 Nayeli A. Silva, Inc.</p>
             </div>
 

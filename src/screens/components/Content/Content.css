@@ -21,17 +21,19 @@
     height: 35px;
     justify-content: center;
 }
-
+.soft-container{
+    display: flex;
+    background-color: #E8E8E8;
+}
 .body-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    background-color: #FCFCFC;
-    padding-inline: 30px;
-    padding-top: 10px;
-    min-height: 90vh;
-    margin-left: 30px;
-    margin-right: 30px ;
+    background-color: #FFFFFF;
+    padding-inline: 5vw;
+    padding-top: 3vh;
+    min-height: 100vh;
+    margin: 3vh 3vw;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -55,7 +57,7 @@
     color: #3B3838;
     white-space: pre-line;
 }
-.footer {
+.footer-content {
     display: flex;
     align-items: center;
     justify-content: center;

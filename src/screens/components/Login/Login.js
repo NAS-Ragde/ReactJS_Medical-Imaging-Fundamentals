@@ -31,7 +31,7 @@ export default function Login() {
                 <span className={'login'}>Login</span>
 
 
-                <p className={"text"}> Dont you have an account? {
+                <p className={"sign-in-text"}> Dont you have an account? {
                     <span className="sign-in"> Sign in </span>
                     }
                 </p>

@@ -7,6 +7,9 @@ export default function Home() {
     const [chapters, setChapters] = useState([]);
     const welcomeText = 'This course is prepared to give you fundamental insights about Medical Imaging.';
 
+    localStorage.getItem('uuid');
+    localStorage.getItem('username');
+
     const requestChapters = () => {
         useEffect(() => {
                 axios
