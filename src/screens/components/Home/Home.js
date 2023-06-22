@@ -4,30 +4,33 @@ import axios from "axios";
 import {CHAPTERS} from "../../../api-services/Api";
 export default function Home() {
 
-    const RequestChapters = () => {
-        useEffect(() => {
-            axios
-                .get(CHAPTERS)
-                .then( (chapters) => {
-                    console.log(chapters.data);
-                })
-                .catch((error) =>{
-                    console.log(error);
-                })
-        }, []);
-    }
-
+    const [chapters, setChapters] = useState([]);
     const welcomeText = 'This course is prepared to give you fundamental insights about Medical Imaging.';
 
-    const ListOfChapters = ({chapters}) => {
+    const requestChapters = () => {
+        useEffect(() => {
+                axios
+                    .get(CHAPTERS)
+                    .then((response) => {
+                        const chapters = response.data.map((chapter) => [chapter.id, chapter.title]);
+                        setChapters(chapters) ;
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+            },
+            []);
+    }
+
+    const ListOfChapters = () => {
         return (
             <table className={'table'} >
                 <tbody>
                 {
-                    chapters.map((chapters) => (
-                            <tr key={chapters.id}  className={'tr-text'} >
-                                <td className={'list-id'}>{ chapters.id}. </td>
-                                <td className={'list-title'}>{ chapters.title }</td>
+                    chapters.map((chapter) => (
+                            <tr key={chapter.id}  className={'tr-text'} >
+                                <td className={'list-id'}>{ chapter.id}. </td>
+                                <td className={'list-title'}>{ chapter.title }</td>
                                 <td className={'list-status'}>Status</td>
                             </tr>
                         )
@@ -60,7 +63,7 @@ export default function Home() {
                 </div>
 
                 <div className={'textWrapper'}>
-                    <ListOfChapters chapters={RequestChapters}/>
+                    <ListOfChapters/>
                 </div>
 
                 <span className={'start-button'}> Get Started </span>
@@ -77,3 +80,17 @@ export default function Home() {
     );
 }
 
+
+/*
+  const Mock_Chapters = () => {
+        const data = [
+        {"id": 1, "title": "Introduction to digital imaging", "contents": []},
+        {"id": 2, "title": "Digital imaging: Formats, compression, store and visualization", "contents": []},
+        {"id": 3, "title": "Standard DICOM", "contents": []},
+        {"id": 4, "title": "Picture archiving and communication systems", "contents": []},
+        {"id": 5, "title": "AAAAAAAAAAAAAAAAAAAAAAAA", "contents": []}
+        ]
+
+    return data;
+}
+ */
