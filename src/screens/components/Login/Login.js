@@ -1,14 +1,17 @@
 import React, {useState} from "react";
 import './Login.css';
+import {useNavigate} from "react-router-dom";
 
-const handleSubmit =() => {
-
-}
 export default function Login() {
 
     const [userName, setUsername] = useState ();
     const [password, setPassword] = useState();
 
+    const navigate = useNavigate();
+
+    const login =() => {
+
+    }
 
     return (
         <div className="background">
@@ -28,13 +31,11 @@ export default function Login() {
                     value={password}
                 />
 
-                <span className={'login'}>Login</span>
+                <span className={'login'} onSubmit={login}>Login</span>
 
 
                 <p className={"sign-in-text"}> Dont you have an account? {
-                    <span
-                        className="sign-in"
-                        onClick={()=> {} } >Sign in </span>
+                    <span className="sign-in" onClick={()=> navigate('/registration') } >Sign in </span>
                     }
                 </p>
 

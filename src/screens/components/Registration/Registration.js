@@ -2,11 +2,13 @@ import React, {useState} from "react";
 import './Registration.css'
 import {useForm} from "react-hook-form";
 import axios from "axios";
-import {STUDENTS_REGISTRATION} from "../../../api-services/Api";
-import {Link} from "react-router-dom";
+import {isLoggedIn, STUDENTS_REGISTRATION} from "../../../api-services/Api";
+import {Link, Navigate, Route, useNavigate} from "react-router-dom";
+
 export default function Registration () {
 
      const [getEmail, setEmail] = useState('');
+     const [auth, setAuth] = useState('');
 
      const [password, setPassword] = useState('');
      const [confirmPassword, setConfirmPassword] = useState('');
@@ -38,23 +40,21 @@ export default function Registration () {
         return console.log('process incomplete', value)
     }
 
-    const readdressing = () => {
-        return (
-            <Link to = "../Home/Home.js" />
-        );
+    const navigate = useNavigate();
+    const redirectUser = (email) => {
+        const fillEmailInput = email;
+        return navigate('/login');
     }
 
-    const onSubmit = async (data) => {
+    const registration = async (data) => {
         console.log(data);
-
         if (Object.keys(data.length !== 0)) {
 
             await axios
                 .post(STUDENTS_REGISTRATION + "?username=" + data.email + "&password=" + data.password)
                 .then ((response) => {
                         console.log('Posted:', response.data);
-                        setEmail(response.data.email);
-                        readdressing();
+                        redirectUser(setEmail(response.data.email));
                     }
                 )
                 .catch((error) => {
@@ -100,7 +100,7 @@ export default function Registration () {
                     { }
                 </div>
 
-               <form className={'submission'} onSubmit={handleSubmit(onSubmit)}>
+               <form className={'submission'} onSubmit={handleSubmit(registration)}>
                    <input
                        type ={'Submit'}
                        className={'submission'}

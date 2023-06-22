@@ -4,11 +4,10 @@ import Registration from "./screens/components/Registration/Registration";
 import Home from "./screens/components/Home/Home";
 import Login from "./screens/components/Login/Login";
 import Content from "./screens/components/Content/Content";
-import {BrowserRouter as Router, Routes, Route, Link, NavLink, Navigate} from 'react-router-dom';
-
+import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {isLoggedIn} from "./api-services/Api";
 function App() {
 
-    const isLoggedIn = localStorage.getItem('uuid');
 
     return <Router>
         <Routes>
@@ -16,15 +15,15 @@ function App() {
                 path='/'
                 element={<Home />}/>
             <Route
-                path='/Login'
+                path='/login'
                 element={<Login/>}
             />
             <Route
-                path='/Home'
+                path='/home'
                 element={<Home />}
             />
             <Route
-                path='/Registration'
+                path='/registration'
                 element={<Registration />}
             />
             <Route
