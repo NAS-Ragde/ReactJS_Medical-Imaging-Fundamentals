@@ -23,6 +23,7 @@ export default function Home() {
     }
 
     const ListOfChapters = () => {
+        requestChapters();
         return (
             <table className={'table'} >
                 <tbody>
