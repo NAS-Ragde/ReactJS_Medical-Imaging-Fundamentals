@@ -11,44 +11,44 @@ function App() {
 
     return <Router>
         <Routes>
-            <Route
-                path='/'
-                element={<Home />}/>
-            <Route
-                path='/login'
-                element={<Login/>}
-            />
-            <Route
-                path='/home'
-                element={<Home />}
-            />
-            <Route
-                path='/registration'
-                element={<Registration />}
-            />
-            <Route
-                path='/Content'
-                element={<Content />}
-            />
             {/*<Route*/}
             {/*    path='/'*/}
-            {/*    element={isLoggedIn ? (<Home />) : (<Login/>)}/>*/}
+            {/*    element={<Home />}/>*/}
             {/*<Route*/}
-            {/*    path='/Login'*/}
-            {/*    element={isLoggedIn ? (<Home />) : (<Login/>)}*/}
+            {/*    path='/login'*/}
+            {/*    element={<Login/>}*/}
             {/*/>*/}
             {/*<Route*/}
-            {/*    path='/Home'*/}
-            {/*    element={isLoggedIn ? (<Home />) : (<Login/>)}*/}
+            {/*    path='/home'*/}
+            {/*    element={<Home />}*/}
             {/*/>*/}
             {/*<Route*/}
-            {/*    path='/Registration'*/}
+            {/*    path='/registration'*/}
             {/*    element={<Registration />}*/}
             {/*/>*/}
             {/*<Route*/}
             {/*    path='/Content'*/}
-            {/*    element={isLoggedIn ? (<Content />) : (<Login/>)}*/}
+            {/*    element={<Content />}*/}
             {/*/>*/}
+            <Route
+                path='/'
+                element={isLoggedIn ? (<Home />) : (<Login/>)}/>
+            <Route
+                path='/Login'
+                element={isLoggedIn ? (<Home />) : (<Login/>)}
+            />
+            <Route
+                path='/Home'
+                element={isLoggedIn ? (<Home />) : (<Login/>)}
+            />
+            <Route
+                path='/Registration'
+                element={<Registration />}
+            />
+            <Route
+                path='/Content'
+                element={isLoggedIn ? (<Content />) : (<Login/>)}
+            />
         </Routes>
     </Router>
 }
