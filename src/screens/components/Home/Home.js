@@ -2,6 +2,7 @@ import React, {useEffect, useMemo, useState} from "react";
 import './Home.css'
 import axios from "axios";
 import {CHAPTERS} from "../../../api-services/Api";
+import {useNavigate} from "react-router-dom";
 
 export default function Home() {
 
@@ -29,8 +30,8 @@ export default function Home() {
                     chapters.map((item, index) =>
                         (
                             <tr key={`${item.id}-${index}`} className="tr-text">
-                                <td className="list-id">{JSON.stringify(item.chapter.id)}.</td>
-                                <td className="list-title">{JSON.stringify(item.chapter.title)}</td>
+                                <td className="list-id">{item.chapter.id}.</td>
+                                <td className="list-title">{item.chapter.title}</td>
                                 <td className="list-completed">{item.completed ? 'Completed' : 'Uncompleted'}</td>
                             </tr>
                         ))
@@ -42,6 +43,15 @@ export default function Home() {
 
     }
 
+    const logout = () => {
+        localStorage.removeItem('uuid');
+        navigate('/Login');
+        navigate(0);
+        // localStorage.removeItem('user');
+    }
+
+    const navigate = useNavigate();
+
     return (
         <div>
             <div className={'header'}>
@@ -49,8 +59,7 @@ export default function Home() {
                 <p className={'header-title'}>Exit
                     <button
                         className={'logout-button'}
-                        onClick={() => {
-                        }}
+                        onClick={logout}
                     />
                 </p>
 
@@ -67,7 +76,7 @@ export default function Home() {
                     <ListOfChapters/>
                 </div>
 
-                <span className={'start-button'}> Get Started </span>
+                <span className={'start-button'}  onClick={()=> navigate('/content')}> Get Started </span>
 
             </div>
 
@@ -81,17 +90,3 @@ export default function Home() {
     );
 }
 
-
-/*
-  const Mock_Chapters = () => {
-        const data = [
-        {"id": 1, "title": "Introduction to digital imaging", "contents": []},
-        {"id": 2, "title": "Digital imaging: Formats, compression, store and visualization", "contents": []},
-        {"id": 3, "title": "Standard DICOM", "contents": []},
-        {"id": 4, "title": "Picture archiving and communication systems", "contents": []},
-        {"id": 5, "title": "AAAAAAAAAAAAAAAAAAAAAAAA", "contents": []}
-        ]
-
-    return data;
-}
- */

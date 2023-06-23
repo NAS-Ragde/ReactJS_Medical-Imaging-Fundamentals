@@ -1,5 +1,6 @@
 import './Content.css'
 import React from "react";
+import {useNavigate} from "react-router-dom";
 
 const subtitle1 =
     'Since the discovery of radioactive elements like Radium and Polonium by Marie Curie, and the experiments conducted by Wilhelm C. Rontgen which consist of passing electric beams through different objects and recording its differential of density in graphic plates, the use of radiation and X-Rays has transformed the medical field by allowing visualization of anatomical structures within the human body.'+'\n\n'+
@@ -7,6 +8,8 @@ const subtitle1 =
     'Nowadays the medical imaging field offers several techniques and medical equipment to produce medical images in digital format.  These include Computer Tomography (1960), Positron Emission Tomography (1977), Magnetic Resonance Image (1980) and others. With the increasing variety of devices available in the market the need to standardize the information produced by each device emerged. This need was addressed with the development of DICOM standard, which will be discussed in the upcoming chapters of this course.\n\n'
 
 export default function Content() {
+    const navigate = useNavigate();
+
     return (
         <div>
 
@@ -14,7 +17,7 @@ export default function Content() {
                 <p className={'headerContent'}>Chapter 1</p>
                 <button
                     className={'homeButton'}
-                    onClick={() => {}}
+                    onClick={() => navigate('/home')}
                 />
             </div>
 
@@ -25,8 +28,6 @@ export default function Content() {
                     <p className={'text'}>{subtitle1}</p>
                 </div>
             </div>
-
-
 
 
             <div className={'footer-content'}>

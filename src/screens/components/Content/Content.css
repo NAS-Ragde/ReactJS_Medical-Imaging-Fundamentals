@@ -20,6 +20,7 @@
     width: 35px;
     height: 35px;
     justify-content: center;
+    cursor: pointer;
 }
 .soft-container{
     display: flex;
