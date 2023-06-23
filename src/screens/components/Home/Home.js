@@ -1,45 +1,41 @@
-import React, {useEffect, useState}  from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import './Home.css'
 import axios from "axios";
 import {CHAPTERS} from "../../../api-services/Api";
+
 export default function Home() {
 
     const [chapters, setChapters] = useState([]);
     const welcomeText = 'This course is prepared to give you fundamental insights about Medical Imaging.';
 
-    localStorage.getItem('uuid');
-    localStorage.getItem('username');
-
-    const requestChapters = () => {
-        useEffect(() => {
-                axios
-                    .get(CHAPTERS)
-                    .then((response) => {
-                        const chapters = response.data.map((chapter) => [chapter.id, chapter.title]);
-                        setChapters(chapters) ;
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    })
-            },
-            []);
-    }
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response =
+                    await axios.get(CHAPTERS + '?uuid=' + localStorage.getItem('uuid') + '&username=' + localStorage.getItem('username'));
+                setChapters(response.data);
+            } catch (error) {
+                console.log(error)
+            }
+        };
+        fetchData();
+    }, []);
 
     const ListOfChapters = () => {
-        requestChapters();
         return (
-            <table className={'table'} >
+            <table className={'table'}>
                 <tbody>
                 {
-                    chapters.map((chapter) => (
-                            <tr key={chapter.id}  className={'tr-text'} >
-                                <td className={'list-id'}>{ chapter.id}. </td>
-                                <td className={'list-title'}>{ chapter.title }</td>
-                                <td className={'list-status'}>Status</td>
+                    chapters.map((item, index) =>
+                        (
+                            <tr key={`${item.id}-${index}`} className="tr-text">
+                                <td className="list-id">{JSON.stringify(item.chapter.id)}.</td>
+                                <td className="list-title">{JSON.stringify(item.chapter.title)}</td>
+                                <td className="list-completed">{item.completed ? 'Completed' : 'Uncompleted'}</td>
                             </tr>
-                        )
-                    )
+                        ))
                 }
+
                 </tbody>
             </table>
         );
@@ -53,7 +49,8 @@ export default function Home() {
                 <p className={'header-title'}>Exit
                     <button
                         className={'logout-button'}
-                        onClick={()=>{}}
+                        onClick={() => {
+                        }}
                     />
                 </p>
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-export const baseUrl = 'http://localhost:8080';
+export const LOGIN = 'http://localhost:8080/students/login';
 export const STUDENTS_REGISTRATION = 'http://localhost:8080/students/register';
 export const CHAPTERS = 'http://localhost:8080/chapters';
 export const QUIZ = 'http://localhost:8080/quizes';
