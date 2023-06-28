@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useState} from "react";
 import './Home.css'
 import axios from "axios";
-import {CHAPTERS} from "../../../api-services/Api";
+import {CHAPTERS, STORAGE_KEY} from "../../../api-services/Api";
 import {useNavigate} from "react-router-dom";
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
         const fetchData = async () => {
             try {
                 const response =
-                    await axios.get(CHAPTERS + '?uuid=' + localStorage.getItem('uuid') + '&username=' + localStorage.getItem('username'));
+                    await axios.get(CHAPTERS + '?uuid=' + localStorage.getItem(STORAGE_KEY.UUID) + '&username=' + localStorage.getItem(STORAGE_KEY.USERNAME));
                 setChapters(response.data);
             } catch (error) {
                 console.log(error)
@@ -44,7 +44,8 @@ export default function Home() {
     }
 
     const logout = () => {
-        localStorage.removeItem('uuid');
+        localStorage.removeItem(STORAGE_KEY.UUID);
+        localStorage.removeItem(STORAGE_KEY.USERNAME);
         navigate('/Login');
         navigate(0);
         // localStorage.removeItem('user');

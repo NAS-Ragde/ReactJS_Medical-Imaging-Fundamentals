@@ -34,6 +34,7 @@
     padding-inline: 5vw;
     padding-top: 3vh;
     min-height: 100vh;
+    min-width: 80vw;
     margin: 3vh 3vw;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -57,6 +58,7 @@
     font-size: 18px;
     color: #3B3838;
     white-space: pre-line;
+    line-height: 3vh;
 }
 .footer-content {
     display: flex;

@@ -3,7 +3,7 @@ import './Login.css';
 import {useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import axios from "axios";
-import {LOGIN, STUDENTS_REGISTRATION} from "../../../api-services/Api";
+import {LOGIN, STORAGE_KEY} from "../../../api-services/Api";
 
 export default function Login() {
 
@@ -35,8 +35,8 @@ export default function Login() {
             await axios
                 .get(LOGIN + "?username=" + data.email + "&password=" + data.password)
                 .then ((response) => {
-                    localStorage.setItem('uuid', response.data);
-                    localStorage.setItem('username', data.email);
+                    localStorage.setItem(STORAGE_KEY.UUID, response.data);
+                    localStorage.setItem(STORAGE_KEY.USERNAME, data.email);
                 })
                 .then(() => {
                     redirectUser()
