@@ -3,6 +3,7 @@ import './Home.css'
 import axios from "axios";
 import {CHAPTERS, STORAGE_KEY} from "../../../api-services/Api";
 import {useNavigate} from "react-router-dom";
+import {Progress} from "antd";
 
 export default function Home() {
 
@@ -22,7 +23,7 @@ export default function Home() {
         fetchData();
     }, []);
 
-    const ListOfChapters = () => {
+    const ListOfChapters = ({item}) => {
         return (
             <table className={'table'}>
                 <tbody>
@@ -30,9 +31,12 @@ export default function Home() {
                     chapters.map((item, index) =>
                         (
                             <tr key={`${item.id}-${index}`} className="tr-text">
-                                <td className="list-id">{item.chapter.id}.</td>
+                                <td className="list-id">Chapter {item.chapter.id}.</td>
                                 <td className="list-title">{item.chapter.title}</td>
-                                <td className="list-completed">{item.completed ? 'Completed' : 'Uncompleted'}</td>
+                                <td className="list-status">{item.status
+                                    ? (<div className={'progress-bar'}> <Progress percent={100} size="small"  /></div>)
+                                    : (<div className={'progress-bar'}> <Progress percent={1} size="small" status={'exception'} /></div>)
+                                }</td>
                             </tr>
                         ))
                 }

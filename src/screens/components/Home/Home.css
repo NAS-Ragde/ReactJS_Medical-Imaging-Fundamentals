@@ -43,6 +43,7 @@
     border-color: #E66A16;
     border-radius: 8px;
     margin-bottom: 30px;
+    overflow: auto;
 }
 .welcome {
     color: #3B3838;
@@ -65,19 +66,37 @@
     margin: 10px;
     align-items: center;
     justify-content: space-evenly;
+    overflow: auto;
 }
 
 .tr-text {
     font-weight: 500;
-    font-size: 22px;
+    font-size: 16px;
     padding: 10px;
     color: #6A6969;
+    margin-inline:2px;
+    overflow: auto;
+}
+
+@media (min-width: 768px) {
+    .tr-text {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .tr-text {
+        font-size: 24px;
+    }
 }
 
 .list-id {
-    width: 5vw;
-    text-align: right;
+    display: flex;
+    align-content: flex-start;
+    max-width: 15vw;
+    min-width: 11vh;
     padding: 10px;
+    text-align: right;
 }
 .list-title {
     max-width: 70vw;
@@ -86,10 +105,12 @@
     padding: 10px;
 }
 .list-status {
-    width: 10vw;
+    width: 15vw;
     text-align: left;
     padding: 10px;
 }
+
+
 
 .start-button{
     color: #E66A16;
@@ -98,16 +119,21 @@
     text-align: center;
     align-self: center;
     width: 300px;
-    margin-bottom: 40px ;
     cursor: pointer;
+    margin-top: 25px ;
 }
 
 .footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 42px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 32px;
     border: none;
+    margin-top: 20px;
     background :linear-gradient( to right, #E23E02, #FF7F50, #F89B29 );
 }
 
