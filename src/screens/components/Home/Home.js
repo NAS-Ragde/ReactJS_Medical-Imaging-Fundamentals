@@ -1,13 +1,15 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useEffect, useState} from "react";
 import './Home.css'
 import axios from "axios";
 import {CHAPTERS, STORAGE_KEY} from "../../../api-services/Api";
 import {useNavigate} from "react-router-dom";
-import {Progress} from "antd";
+import {Modal, Progress} from "antd";
+import SurveyComponent from "../Quizzes/InitialQuiz/initialQuiz";
 
 export default function Home() {
 
     const [chapters, setChapters] = useState([]);
+    const [isModalVisible, setIsModalVisible] = useState(true);
     const welcomeText = 'This course is prepared to give you fundamental insights about Medical Imaging.';
 
     useEffect(() => {
@@ -23,7 +25,7 @@ export default function Home() {
         fetchData();
     }, []);
 
-    const ListOfChapters = ({item}) => {
+    const ListOfChapters = () => {
         return (
             <table className={'table'}>
                 <tbody>
@@ -35,8 +37,8 @@ export default function Home() {
                                 <td className="list-title">{item.chapter.title}</td>
                                 <td className="list-status">{item.status
                                     ? (<div className={'progress-bar'}> <Progress percent={100} size="small"  /></div>)
-                                    : (<div className={'progress-bar'}> <Progress percent={1} size="small" status={'exception'} /></div>)
-                                }</td>
+                                    : (<div className={'progress-bar'}> <Progress percent={1} size="small" status={'exception'} /></div>)}
+                                </td>
                             </tr>
                         ))
                 }
@@ -55,6 +57,14 @@ export default function Home() {
         // localStorage.removeItem('user');
     }
 
+    const handleSubmit = () => {
+            setIsModalVisible(false);
+    };
+
+    const handleCancel = () => {
+            setIsModalVisible(false);
+    };
+
     const navigate = useNavigate();
 
     return (
@@ -67,19 +77,34 @@ export default function Home() {
                 />
             </div>
 
+            {/*body content*/}
             <div className={'container'}>
-
                 <div className={'textWrapper'}>
                     <h1 className={'welcome'}>Welcome,</h1>
                     <p className={'course-text'}>{welcomeText}</p>
                 </div>
 
+                {/*Modal*/}
+                <Modal
+                    title="Initial Assessment"
+                    open={isModalVisible}
+                    onOk={handleSubmit}
+                    onCancel={handleCancel}
+                    okText="Submit"
+                    maskClosable={false}
+                    width={2000}
+
+                >
+                        <SurveyComponent/>
+                </Modal>
+
+
+                {/*List of Content*/}
                 <div className={'textWrapper'}>
                     <ListOfChapters/>
                 </div>
 
                 <span className={'start-button'}  onClick={()=> navigate('/content')}> Get Started </span>
-
             </div>
 
             <div className={'footer'}>

@@ -1,0 +1,9 @@
+.correctAnswer {
+    color: #27af00;
+}
+.incorrectAnswer {
+    color: #be0018;
+}
+.sd-element__title.sd-element__title--disabled {
+    opacity: 1;
+}
