@@ -1,22 +1,43 @@
-.header {
+.header-Page {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-inline: 40px;
     background-color: #FF9966;
+    min-height: 7vh;
 }
 
-.headerContent{
-    font-size: 25px;
+.nav-menu-Button{
+    background-image: url('/assets/menu.png');
+    background-size: cover;
+    background-color: #FF9966;
+    border: none;
+    margin-left: 10px;
+    width: 35px;
+    height: 35px;
+    justify-content: center;
+    cursor: pointer;
+}
+.nav-menu-content {
+    list-style-type: none;
+    padding-left: 10px;
+    font-size: 1em;
+}
+.nav-menu-content ul li {
+    margin-bottom: 10px;
+}
+
+.header-title{
+    font-size: 21px;
     font-weight: 400;
     color: white;
 }
-.homeButton {
+.home-button {
     background-image: url('/assets/home-button.png');
     background-size: cover;
     background-color: #FF9966;
     border: none;
-    margin-left: 15px;
+    margin-right: 15px;
     width: 35px;
     height: 35px;
     justify-content: center;
@@ -74,4 +95,11 @@
     font-size: 14px;
     align-self: center;
     text-align: center;
+}
+
+.pagination {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2vh;
 }

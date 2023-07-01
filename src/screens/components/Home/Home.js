@@ -57,13 +57,10 @@ export default function Home() {
         <div>
             <div className={'header'}>
                 <p className={'header-title'}>Home</p>
-                <p className={'header-title'}>Exit
-                    <button
-                        className={'logout-button'}
-                        onClick={logout}
-                    />
-                </p>
-
+                <button
+                    className={'logout-button'}
+                    onClick={logout}
+                />
             </div>
 
             <div className={'container'}>
