@@ -1,19 +1,20 @@
 import React, {useEffect, useState} from "react";
 import './Home.css'
 import axios from "axios";
-import {CHAPTERS, STORAGE_KEY} from "../../../api-services/Api";
+import {CHAPTERS, QUIZZES, STORAGE_KEY} from "../../../api-services/Api";
 import {useNavigate} from "react-router-dom";
 import {Modal, Progress} from "antd";
 import SurveyComponent from "../Quizzes/InitialQuiz/initialQuiz";
+import {chapterStartPage, finalEvaluationStartPage} from "../Quizzes/InitialQuiz/json";
 
 export default function Home() {
-
     const [chapters, setChapters] = useState([]);
+    const [quizzes, setQuizzes] = useState();
     const [isModalVisible, setIsModalVisible] = useState(true);
     const welcomeText = 'This course is prepared to give you fundamental insights about Medical Imaging.';
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchChatpers = async () => {
             try {
                 const response =
                     await axios.get(CHAPTERS + '?uuid=' + localStorage.getItem(STORAGE_KEY.UUID) + '&username=' + localStorage.getItem(STORAGE_KEY.USERNAME));
@@ -22,7 +23,20 @@ export default function Home() {
                 console.log(error)
             }
         };
-        fetchData();
+        fetchChatpers();
+    }, []);
+
+    useEffect(() => {
+        const fetchQuizzes = async () => {
+            try {
+                const response =
+                    await axios.get(QUIZZES + '?uuid=' + localStorage.getItem(STORAGE_KEY.UUID) + '&username=' + localStorage.getItem(STORAGE_KEY.USERNAME));
+                setQuizzes(response.data);
+            } catch (error) {
+                console.log(error)
+            }
+        };
+        fetchQuizzes();
     }, []);
 
     const ListOfChapters = () => {
@@ -36,8 +50,9 @@ export default function Home() {
                                 <td className="list-id">Chapter {item.chapter.id}.</td>
                                 <td className="list-title">{item.chapter.title}</td>
                                 <td className="list-status">{item.status
-                                    ? (<div className={'progress-bar'}> <Progress percent={100} size="small"  /></div>)
-                                    : (<div className={'progress-bar'}> <Progress percent={1} size="small" status={'exception'} /></div>)}
+                                    ? (<div className={'progress-bar'}><Progress percent={100} size="small"/></div>)
+                                    : (<div className={'progress-bar'}><Progress percent={1} size="small"
+                                                                                 status={'exception'}/></div>)}
                                 </td>
                             </tr>
                         ))
@@ -58,11 +73,11 @@ export default function Home() {
     }
 
     const handleSubmit = () => {
-            setIsModalVisible(false);
+        setIsModalVisible(false);
     };
 
     const handleCancel = () => {
-            setIsModalVisible(false);
+        setIsModalVisible(false);
     };
 
     const navigate = useNavigate();
@@ -85,7 +100,7 @@ export default function Home() {
                 </div>
 
                 {/*Modal*/}
-                <Modal
+                {quizzes && <Modal
                     title="Initial Assessment"
                     open={isModalVisible}
                     onOk={handleSubmit}
@@ -93,10 +108,9 @@ export default function Home() {
                     okText="Submit"
                     maskClosable={false}
                     width={2000}
-
                 >
-                        <SurveyComponent/>
-                </Modal>
+                    <SurveyComponent quizzes={quizzes} quizId={1} startPage={chapterStartPage}/>
+                </Modal>}
 
 
                 {/*List of Content*/}
@@ -104,7 +118,7 @@ export default function Home() {
                     <ListOfChapters/>
                 </div>
 
-                <span className={'start-button'}  onClick={()=> navigate('/content')}> Get Started </span>
+                <span className={'start-button'} onClick={() => navigate('/content')}> Get Started </span>
             </div>
 
             <div className={'footer'}>
@@ -112,8 +126,6 @@ export default function Home() {
             </div>
 
         </div>
-
-
     );
 }
 

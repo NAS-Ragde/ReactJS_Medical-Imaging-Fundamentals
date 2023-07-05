@@ -1,7 +1,6 @@
 import './Content.css'
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import fetchContent from "../../../api-services/fetchContent";
 import {Drawer, Pagination} from "antd";
 
 export default function Content() {

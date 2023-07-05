@@ -110,7 +110,64 @@
     padding: 10px;
 }
 
+/**** Survey Start page ****/
+/* Survey Start-Button text */
+.sd-btn.sd-navigation__start-btn {
+    color: #E66A16 !important;
+}
+/* Survey Start-Button border onClick */
+.sd-btn.sd-navigation__start-btn:focus {
+    box-shadow: 0 0 0 2px #E66A16 !important;
+}
+/* Title in survey in survey */
+.sd-header__text .sd-title {
+    color: #E66A16 !important;
+}
+/* Line in title in survey */
+.sd-title.sd-container-modern__title {
+    box-shadow: 0px 2px 0px #E66A16 !important;
+}
 
+/**** Survey Content page ****/
+/* circle around timer */
+.sv-svg-icon.sd-timer__progress {
+    stroke: #E66A16 !important;
+}
+
+/* timer countdown */
+.sd-timer__text--major {
+    color: #E66A16 !important;
+}
+
+/* Next button in questions */
+.sd-btn.sd-navigation__next-btn {
+    color: #E66A16;
+}
+/* Next button onClick */
+.sd-btn.sd-navigation__next-btn:focus {
+    box-shadow: 0 0 0 2px #E66A16 !important;
+}
+
+/* Complete button */
+.sd-btn.sd-btn--action.sd-navigation__complete-btn {
+    background-color: #E66A16;
+}
+/* Complete button onClick */
+.sd-btn.sd-btn--action.sd-navigation__complete-btn:focus {
+    box-shadow: 0 0 0 2px transparent !important;
+}
+
+/* Line over complete button */
+.sd-progress__bar {
+    background-color: #E66A16 !important;
+}
+
+/* radio buttons border after going to the 2nd questions */
+.sd-item__decorator.sd-radio__decorator {
+    box-shadow: var(--sjs-shadow-inner, inset 0px 1px 2px #DDD) !important;
+}
+
+/*** end ***/
 
 .start-button{
     color: #E66A16;

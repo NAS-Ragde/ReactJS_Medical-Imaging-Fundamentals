@@ -3,13 +3,45 @@ import { Model } from "survey-core";
 import { Survey } from "survey-react-ui";
 import "survey-core/defaultV2.min.css";
 import "../quizzes.css";
-import {json} from "./json";
+import {quizPattern} from "./json";
 
-function SurveyComponent() {
+function getQuizById(quizzes, quizId) {
+    return quizzes.find(quizData => quizData.quiz.id === quizId).quiz
+}
+
+function SurveyComponent({quizzes, quizId, startPage}) {
+    const quiz = getQuizById(quizzes, quizId);
+
+    console.log(quiz);
+
+    const json = {
+        ...quizPattern,
+        title: quiz.title,
+        pages: [
+            startPage,
+            ...quiz.questions.map(question => {
+                return {
+                    "elements": [{
+                        "type": "radiogroup",
+                        "name": question.id.toString(),
+                        "title": question.text,
+                        "choices": question.answers?.map(answer => answer.text),
+                        "correctAnswer": question.answers.find(answer => answer.id === question.correctAnswerId).text,
+                        "enableIf": "{" + question.id + "} empty"
+                    }]
+                }
+            })
+        ]
+    }
+
     const survey = new Model(json);
 
     survey.onComplete.add((sender, options) => {
         console.log(JSON.stringify(sender.data, null, 3));
+        console.log(sender.data);
+
+        // retrieve id from questions and send it to backend
+        // loop over sender.data and check answer in
     });
 
     const correctStr = "Correct";
@@ -21,44 +53,17 @@ function SurveyComponent() {
             return undefined;
 
         return text.substring(0, text.indexOf(str)) +
-            "<span class='" +  (isCorrect ? "correctAnswer" : "incorrectAnswer" ) + "'>" +
-            str +
-            "</span>";
+            "<span class='" +  (isCorrect ? "correctAnswer" : "incorrectAnswer" ) + "'>" + str + "</span>";
     }
 
     // Compares the correct answer with a given answer and returns `true` if they are equal
-    function isAnswerCorrect (q) {
-        const correctAnswer = q.correctAnswer;
-
-        if (!correctAnswer || q.isEmpty())
-            return undefined;
-
-        let givenAnswer = q.value;
-        if (!Array.isArray(correctAnswer))
-            return correctAnswer == givenAnswer;
-
-        if (!Array.isArray(givenAnswer))
-            givenAnswer = [givenAnswer];
-
-        for (let i = 0; i < givenAnswer.length; i++) {
-            if (correctAnswer.indexOf(givenAnswer[i]) < 0)
-                return false;
-        }
-        return true;
+    function isAnswerCorrect (question) {
+        return question.correctAnswer === question.value;
     }
 
     // Adds "Correct" or "Incorrect" to a question title
-    function changeTitle (q) {
-        if (!q) return;
-
-        const isCorrect = isAnswerCorrect(q);
-        if (!q.prevTitle) {
-            q.prevTitle = q.title;
-        }
-        if (isCorrect === undefined) {
-            q.title = q.prevTitle;
-        }
-        q.title =  q.prevTitle + ' ' + (isCorrect ? correctStr : incorrectStr);
+    function changeTitle (question) {
+        question.title =  question.title + ' ' + (isAnswerCorrect(question) ? correctStr : incorrectStr);
     }
 
     survey.onValueChanged.add((_, options) => {
@@ -77,7 +82,10 @@ function SurveyComponent() {
             options.html = html;
         }
     });
-    return (<Survey model={survey} />);
+    return (
+        
+        <Survey model={survey} />
+    );
 }
 
 export default SurveyComponent;
