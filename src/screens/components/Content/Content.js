@@ -19,7 +19,7 @@ export default function Content() {
     const menuChapterOne = () => {
         return(
             <div className={'nav-menu-content'}>
-                <h3>CHAPTER 1. INTRODUCTION TO MEDICAL IMAGING AND ITS MODALITIES</h3>
+                <h3 className={'content-title'}>CHAPTER 1. INTRODUCTION TO MEDICAL IMAGING AND ITS MODALITIES</h3>
                 <ul>
                     <li>Image acquisition and techniques</li>
                     <li>General image quality requirements</li>
@@ -38,7 +38,7 @@ export default function Content() {
     const menuChapterTwo = () => {
         return(
             <div className={'nav-menu-content'}>
-                <h3>CHAPTER 2. DIGITAL IMAGING: FORMATS, COMPRESSION, STORE AND VISUALIZATION</h3>
+                <h3 className={'content-title'}>CHAPTER 2. DIGITAL IMAGING: FORMATS, COMPRESSION, STORE AND VISUALIZATION</h3>
                 <ul>
                     <li>Image Format</li>
                     <li>Image Compression</li>
@@ -53,7 +53,7 @@ export default function Content() {
     const menuChapterThree = () => {
         return(
             <div className={'nav-menu-content'}>
-                <h3>CHAPTER 3. STANDARD DICOM</h3>
+                <h3 className={'content-title'}>CHAPTER 3. STANDARD DICOM</h3>
                 <ul>
                     <li>Introduction to DICOM as standard</li>
                     <li>DICOM Network communication</li>
@@ -68,7 +68,7 @@ export default function Content() {
     const menuChapterFour = () => {
         return(
             <div className={'nav-menu-content'}>
-                <h3>CHAPTER 4. PICTURE ARCHIVING AND COMMUNICATION SYSTEMS</h3>
+                <h3 className={'content-title'}>CHAPTER 4. PICTURE ARCHIVING AND COMMUNICATION SYSTEMS</h3>
                 <ul>
                     <li>Introduction to PACS</li>
                     <li>Prerequisites and components of PACS</li>
@@ -82,10 +82,25 @@ export default function Content() {
     const menuChapterFive = () => {
         return(
             <div className={'nav-menu-content'}>
-                <h3>CHAPTER 5. PRACTICAL ACTIVITY</h3>
-                <ul>
-                    <li>Dockerizing toolkit DICOM4CHE</li>
-                </ul>
+                <h3 className={'content-title'}>CHAPTER 5. PRACTICAL ACTIVITY</h3>
+                    <ul>
+                        <li className={'removal-bullets'}>
+                            <button className={'link-button'} onClick={ () => navigate('/Viewer') }>
+                                  <span className="circle" aria-hidden="true">
+                                  <span className="icon arrow"></span>
+                                  </span>
+                                <span className="button-text">Medical Viewer</span>
+                            </button>
+                        </li>
+                        <li className={'removal-bullets'}>
+                            <button className={'link-button'}>
+                                <span className="circle" aria-hidden="true">
+                                  <span className="icon arrow"></span>
+                                  </span>
+                                <span className="button-text">DICOM4CHE</span>
+                            </button>
+                        </li>
+                    </ul>
             </div>
         );
     }
