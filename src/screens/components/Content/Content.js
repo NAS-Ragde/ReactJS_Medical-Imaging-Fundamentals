@@ -16,8 +16,14 @@ export default function Content() {
         setOpenMenu(false);
     };
 
+    const openViewer = () => {
+        const url = 'http://localhost:8081/oviyam2';
+        window.open(url, '_blank');
+    }
+
+
     const menuChapterOne = () => {
-        return(
+        return (
             <div className={'nav-menu-content'}>
                 <h3 className={'content-title'}>CHAPTER 1. INTRODUCTION TO MEDICAL IMAGING AND ITS MODALITIES</h3>
                 <ul>
@@ -36,7 +42,7 @@ export default function Content() {
     }
 
     const menuChapterTwo = () => {
-        return(
+        return (
             <div className={'nav-menu-content'}>
                 <h3 className={'content-title'}>CHAPTER 2. DIGITAL IMAGING: FORMATS, COMPRESSION, STORE AND VISUALIZATION</h3>
                 <ul>
@@ -51,7 +57,7 @@ export default function Content() {
     }
 
     const menuChapterThree = () => {
-        return(
+        return (
             <div className={'nav-menu-content'}>
                 <h3 className={'content-title'}>CHAPTER 3. STANDARD DICOM</h3>
                 <ul>
@@ -66,7 +72,7 @@ export default function Content() {
     }
 
     const menuChapterFour = () => {
-        return(
+        return (
             <div className={'nav-menu-content'}>
                 <h3 className={'content-title'}>CHAPTER 4. PICTURE ARCHIVING AND COMMUNICATION SYSTEMS</h3>
                 <ul>
@@ -80,32 +86,32 @@ export default function Content() {
     }
 
     const menuChapterFive = () => {
-        return(
+        return (
             <div className={'nav-menu-content'}>
                 <h3 className={'content-title'}>CHAPTER 5. PRACTICAL ACTIVITY</h3>
-                    <ul>
-                        <li className={'removal-bullets'}>
-                            <button className={'link-button'} onClick={ () => navigate('/Viewer') }>
+                <ul>
+                    <li className={'removal-bullets'}>
+                        <button className={'link-button'} onClick={() => openViewer()}>
                                   <span className="circle" aria-hidden="true">
                                   <span className="icon arrow"></span>
                                   </span>
-                                <span className="button-text">Medical Viewer</span>
-                            </button>
-                        </li>
-                        <li className={'removal-bullets'}>
-                            <button className={'link-button'}>
+                            <span className="button-text">Medical Viewer</span>
+                        </button>
+                    </li>
+                    <li className={'removal-bullets'}>
+                        <button className={'link-button'}>
                                 <span className="circle" aria-hidden="true">
                                   <span className="icon arrow"></span>
                                   </span>
-                                <span className="button-text">DICOM4CHE</span>
-                            </button>
-                        </li>
-                    </ul>
+                            <span className="button-text">DICOM4CHE</span>
+                        </button>
+                    </li>
+                </ul>
             </div>
         );
     }
 
-     // const chapterContent = fetchContent();
+    // const chapterContent = fetchContent();
 
     return (
         <div>
@@ -133,9 +139,9 @@ export default function Content() {
 
             <div className={'soft-container'}>
                 <div className={'body-container'}>
-                    <h1 className={'title'} >  title:  </h1>
-                    <p className={'subtitle'}>  subtitle:  </p>
-                    <p className={'text'}>  text: </p>
+                    <h1 className={'title'}> title: </h1>
+                    <p className={'subtitle'}> subtitle: </p>
+                    <p className={'text'}> text: </p>
 
                     <div className={'pagination'}>
                         <Pagination defaultCurrent={1} total={50}/>
@@ -150,5 +156,5 @@ export default function Content() {
             </div>
 
         </div>
-);
+    );
 }
