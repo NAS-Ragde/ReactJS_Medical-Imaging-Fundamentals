@@ -1,13 +1,17 @@
 import './Content.css'
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Drawer, Pagination} from "antd";
+import axios from "axios";
+import {CHAPTERS, STORAGE_KEY} from "../../../api-services/Api";
 
 export default function Content() {
 
     const navigate = useNavigate();
     const [openMenu, setOpenMenu] = useState(false);
-    const [indexMenu, setIndexMenu] = useState();
+    const [chapters, setChapters] = useState([]);
+    const [selectedChapter, setSelectedChapter] = useState(null);
+
     const showDrawer = () => {
         setOpenMenu(true);
     };
@@ -111,7 +115,36 @@ export default function Content() {
         );
     }
 
-    // const chapterContent = fetchContent();
+    /* Fetch Content */
+
+    useEffect(() => {
+        const fetchContent = async () => {
+            try {
+                const response =
+                    await axios.get(CHAPTERS + '?uuid=' + localStorage.getItem(STORAGE_KEY.UUID) + '&username=' + localStorage.getItem(STORAGE_KEY.USERNAME));
+                    setChapters(response.data);
+
+            } catch (error) {
+                console.log(error)
+            }
+        };
+        fetchContent();
+    }, []);
+
+    const handleChapterSelection = (chapterId) => {
+        const selectedChapter = chapters.find((chapter) => chapter.id === chapterId);
+        setSelectedChapter(selectedChapter);
+    }
+
+    const handleContentFromChapter = () => {
+        return chapters.map(({chapter}, index) => (
+            <div key={index}>
+                <h1 className={'title'}> {chapter.title} </h1>
+                <p className={'subtitle'}> {chapter.contents[0].title} </p>
+                <p className={'text'}>  {chapter.contents[0].text} </p>
+            </div>
+        ))
+    }
 
     return (
         <div>
@@ -139,15 +172,12 @@ export default function Content() {
 
             <div className={'soft-container'}>
                 <div className={'body-container'}>
-                    <h1 className={'title'}> title: </h1>
-                    <p className={'subtitle'}> subtitle: </p>
-                    <p className={'text'}> text: </p>
+                   {handleContentFromChapter()}
 
                     <div className={'pagination'}>
                         <Pagination defaultCurrent={1} total={50}/>
                     </div>
                 </div>
-
             </div>
 
 

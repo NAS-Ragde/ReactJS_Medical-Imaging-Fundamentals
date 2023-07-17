@@ -51,8 +51,7 @@ export default function Home() {
                                 <td className="list-title">{item.chapter.title}</td>
                                 <td className="list-status">{item.status
                                     ? (<div className={'progress-bar'}><Progress percent={100} size="small"/></div>)
-                                    : (<div className={'progress-bar'}><Progress percent={1} size="small"
-                                                                                 status={'exception'}/></div>)}
+                                    : (<div className={'progress-bar'}><Progress percent={100} size="small" status={'exception'}/></div>)}
                                 </td>
                             </tr>
                         ))
@@ -101,7 +100,7 @@ export default function Home() {
 
                 {/*Modal*/}
                 {quizzes && <Modal
-                    title="Initial Assessment"
+                    title="Quiz"
                     open={isModalVisible}
                     onOk={handleSubmit}
                     onCancel={handleCancel}
