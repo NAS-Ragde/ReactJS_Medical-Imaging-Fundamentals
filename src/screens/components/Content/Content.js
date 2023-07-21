@@ -25,6 +25,11 @@ export default function Content() {
         window.open(url, '_blank');
     }
 
+    const openDicomServer = () => {
+        const url = 'http://localhost:8080/dcm4chee-arc/ui2/';
+        window.open(url, '_blank');
+    }
+
 
     const menuChapterOne = () => {
         return (
@@ -103,7 +108,7 @@ export default function Content() {
                         </button>
                     </li>
                     <li className={'removal-bullets'}>
-                        <button className={'link-button'}>
+                        <button className={'link-button'} onClick={ () => openDicomServer()}>
                                 <span className="circle" aria-hidden="true">
                                   <span className="icon arrow"></span>
                                   </span>
@@ -141,7 +146,8 @@ export default function Content() {
             <div key={index}>
                 <h1 className={'title'}> {chapter.title} </h1>
                 <p className={'subtitle'}> {chapter.contents[0].title} </p>
-                <p className={'text'}>  {chapter.contents[0].text} </p>
+                <p className={'text'} dangerouslySetInnerHTML={{ __html: chapter.contents[0].text}}></p>
+
             </div>
         ))
     }

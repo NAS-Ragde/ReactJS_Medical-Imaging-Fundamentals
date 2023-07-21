@@ -166,9 +166,9 @@ ul {
 }
 .subtitle{
     font-size: 20px;
-    font-weight: 600;
-    font-style: italic;
-    color: #3B3838;
+    font-weight: 700;
+    color: #f58b05;
+;
 }
 .text{
     font-weight: 400;
@@ -177,6 +177,18 @@ ul {
     color: #3B3838;
     white-space: pre-line;
     line-height: 3vh;
+}
+
+.text h3{
+    color: #f58b05;
+}
+
+.text ul {
+    list-style-type: revert;
+    line-height: 3.3vh;
+}
+.text dd {
+    line-height: 4.5vh;
 }
 .footer-content {
     display: flex;
