@@ -9,14 +9,16 @@ COPY package*.json ./
 COPY yarn.lock ./
 
 # Install dependencies
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 # Copy source code and configuration files
 COPY src ./src
 
-RUN yarn run build
+RUN react-scripts build
 
 COPY --from=npmbuild "build" "./build"
+
+EXPOSE 4000
 
 # Define the command to run the app
 CMD ["yarn", "start"]
