@@ -162,12 +162,13 @@ ul {
 .title{
     font-size: 35px;
     font-weight: bold;
-    color: #3B3838;
+    color: #f58b05;
+
 }
 .subtitle{
     font-size: 20px;
     font-weight: 700;
-    color: #f58b05;
+    color: #4d7303;
 ;
 }
 .text{
@@ -180,7 +181,7 @@ ul {
 }
 
 .text h3{
-    color: #f58b05;
+    color: #4d7303;
 }
 
 .text ul {
