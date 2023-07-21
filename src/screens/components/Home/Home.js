@@ -10,7 +10,7 @@ import {chapterStartPage, finalEvaluationStartPage} from "../Quizzes/InitialQuiz
 export default function Home() {
     const [chapters, setChapters] = useState([]);
     const [quizzes, setQuizzes] = useState();
-    const [isModalVisible, setIsModalVisible] = useState(true);
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const welcomeText = 'This course is prepared to give you fundamental insights about Medical Imaging.';
 
     useEffect(() => {
@@ -37,6 +37,13 @@ export default function Home() {
             }
         };
         fetchQuizzes();
+    }, []);
+
+    useEffect(() => {
+        const modalShownBefore = localStorage.getItem('modalShownBefore');
+        if (!modalShownBefore) {
+            setIsModalVisible(true);
+        }
     }, []);
 
     const ListOfChapters = () => {
@@ -66,6 +73,7 @@ export default function Home() {
     const logout = () => {
         localStorage.removeItem(STORAGE_KEY.UUID);
         localStorage.removeItem(STORAGE_KEY.USERNAME);
+        localStorage.removeItem('modalShownBefore');
         navigate('/Login');
         navigate(0);
         // localStorage.removeItem('user');
@@ -73,10 +81,12 @@ export default function Home() {
 
     const handleSubmit = () => {
         setIsModalVisible(false);
+        localStorage.setItem('modalShownBefore', 'true');
     };
 
     const handleCancel = () => {
         setIsModalVisible(false);
+        localStorage.setItem('modalShownBefore', 'true');
     };
 
     const navigate = useNavigate();
