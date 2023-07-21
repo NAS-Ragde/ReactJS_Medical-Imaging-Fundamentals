@@ -17,5 +17,6 @@ COPY src ./src
 RUN yarn run build
 
 # Define the command to run the app
-CMD ["yarn", "start"]
 COPY --from=npmbuild "./build" "./build"
+
+CMD ["yarn", "start"]
