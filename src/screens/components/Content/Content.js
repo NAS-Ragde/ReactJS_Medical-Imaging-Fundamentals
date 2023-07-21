@@ -36,8 +36,8 @@ export default function Content() {
             <div className={'nav-menu-content'}>
                 <h3 className={'content-title'}>CHAPTER 1. INTRODUCTION TO MEDICAL IMAGING AND ITS MODALITIES</h3>
                 <ul>
-                    <li>Image acquisition and techniques</li>
                     <li>General image quality requirements</li>
+                    <li>Image acquisition and techniques</li>
                     <ul>
                         <li>Radiography</li>
                         <li>Magnetic Resonance Imaging</li>
