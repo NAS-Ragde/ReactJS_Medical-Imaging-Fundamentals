@@ -12,11 +12,11 @@ COPY yarn.lock ./
 RUN yarn install
 
 # Copy source code and configuration files
-COPY src ./src
+COPY . .
 
 RUN react-scripts build
 
-COPY --from=npmbuild "build" "./build"
+COPY --from=npmbuild "./build" "./build"
 
 EXPOSE 4000
 
