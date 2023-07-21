@@ -4,13 +4,18 @@ import {useNavigate} from "react-router-dom";
 import {Drawer, Pagination} from "antd";
 import axios from "axios";
 import {CHAPTERS, STORAGE_KEY} from "../../../api-services/Api";
+import _, {split} from "lodash";
 
 export default function Content() {
 
     const navigate = useNavigate();
     const [openMenu, setOpenMenu] = useState(false);
     const [chapters, setChapters] = useState([]);
-    const [selectedChapter, setSelectedChapter] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
 
     const showDrawer = () => {
         setOpenMenu(true);
@@ -136,13 +141,19 @@ export default function Content() {
         fetchContent();
     }, []);
 
-    const handleChapterSelection = (chapterId) => {
-        const selectedChapter = chapters.find((chapter) => chapter.id === chapterId);
-        setSelectedChapter(selectedChapter);
-    }
 
     const handleContentFromChapter = () => {
-        return chapters.map(({chapter}, index) => (
+        const pageSize = 1;
+        const totalChapters = chapters.length;
+        const totalPages = Math.ceil(totalChapters / pageSize);
+
+        const currentPageChapters = _.slice(
+            chapters,
+            (currentPage - 1) * pageSize,
+            currentPage * pageSize
+        );
+
+        return currentPageChapters.map(({chapter}, index) => (
             <div key={index}>
                 <h1 className={'title'}> {chapter.title} </h1>
                 <p className={'subtitle'}> {chapter.contents[0].title} </p>
@@ -181,7 +192,12 @@ export default function Content() {
                    {handleContentFromChapter()}
 
                     <div className={'pagination'}>
-                        <Pagination defaultCurrent={1} total={50}/>
+                        <Pagination
+                            current={currentPage}
+                            pageSize={1}
+                            total={chapters.length}
+                            onChange={handlePageChange}
+                        />
                     </div>
                 </div>
             </div>
