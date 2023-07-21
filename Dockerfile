@@ -15,7 +15,7 @@ RUN yarn install
 COPY . .
 
 # Build the application
-RUN react-scripts build
+RUN yarn run build
 
 # Start a new stage for the final image
 FROM node:14
