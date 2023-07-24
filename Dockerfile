@@ -5,8 +5,7 @@ FROM node:14 AS builder
 WORKDIR /app
 
 # Copy package.json and package-lock.json files
-COPY package*.json ./app
-COPY yarn.lock ./app
+COPY package*.json yarn.lock ./
 
 # Install dependencies
 RUN yarn install
@@ -25,6 +24,7 @@ WORKDIR /app
 
 # Copy build artifacts from the "builder" stage to the final image
 COPY --from=builder /app/build ./build
+COPY --from=builder /app/package*.json ./
 
 EXPOSE 4000
 
