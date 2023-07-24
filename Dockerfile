@@ -26,6 +26,12 @@ WORKDIR /app
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/package*.json ./
 
+# Install only production dependencies (optional, reduces image size)
+RUN yarn install --production
+
+# Install react-scripts globally to run the development server
+RUN yarn global add react-scripts
+
 EXPOSE 4000
 
 # Define the command to run the app
