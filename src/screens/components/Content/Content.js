@@ -1,10 +1,12 @@
 import './Content.css'
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {Drawer, Pagination} from "antd";
+import {Drawer, Modal, Pagination} from "antd";
 import axios from "axios";
-import {CHAPTERS, STORAGE_KEY} from "../../../api-services/Api";
-import _, {split} from "lodash";
+import {CHAPTERS, QUIZZES, STORAGE_KEY} from "../../../api-services/Api";
+import _ from "lodash";
+import SurveyComponent from "../Quizzes/InitialQuiz/initialQuiz";
+import {chapterStartPage} from "../Quizzes/InitialQuiz/json";
 
 export default function Content() {
 
@@ -12,6 +14,9 @@ export default function Content() {
     const [openMenu, setOpenMenu] = useState(false);
     const [chapters, setChapters] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [getQuiz, setQuiz] = useState([]);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [selectedQuiz, setSelectedQuiz] = useState(null);
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
@@ -58,7 +63,8 @@ export default function Content() {
     const menuChapterTwo = () => {
         return (
             <div className={'nav-menu-content'}>
-                <h3 className={'content-title'}>CHAPTER 2. DIGITAL IMAGING: FORMATS, COMPRESSION, STORE AND VISUALIZATION</h3>
+                <h3 className={'content-title'}>CHAPTER 2. DIGITAL IMAGING: FORMATS, COMPRESSION, STORE AND
+                    VISUALIZATION</h3>
                 <ul>
                     <li>Image Format</li>
                     <li>Image Compression</li>
@@ -104,6 +110,7 @@ export default function Content() {
             <div className={'nav-menu-content'}>
                 <h3 className={'content-title'}>CHAPTER 5. PRACTICAL ACTIVITY</h3>
                 <ul>
+                    <li>Quizzes</li>
                     <li className={'removal-bullets'}>
                         <button className={'link-button'} onClick={() => openViewer()}>
                                   <span className="circle" aria-hidden="true">
@@ -113,7 +120,7 @@ export default function Content() {
                         </button>
                     </li>
                     <li className={'removal-bullets'}>
-                        <button className={'link-button'} onClick={ () => openDicomServer()}>
+                        <button className={'link-button'} onClick={() => openDicomServer()}>
                                 <span className="circle" aria-hidden="true">
                                   <span className="icon arrow"></span>
                                   </span>
@@ -132,7 +139,7 @@ export default function Content() {
             try {
                 const response =
                     await axios.get(CHAPTERS + '?uuid=' + localStorage.getItem(STORAGE_KEY.UUID) + '&username=' + localStorage.getItem(STORAGE_KEY.USERNAME));
-                    setChapters(response.data);
+                setChapters(response.data);
 
             } catch (error) {
                 console.log(error)
@@ -141,27 +148,99 @@ export default function Content() {
         fetchContent();
     }, []);
 
+    useEffect(() => {
+        const fetchQuizzes = async () => {
+            try {
+                const response =
+                    await axios.get(QUIZZES + '?uuid=' + localStorage.getItem(STORAGE_KEY.UUID) + '&username=' + localStorage.getItem(STORAGE_KEY.USERNAME));
+                setQuiz(response.data);
+            } catch (error) {
+                console.log(error)
+            }
+        };
+        fetchQuizzes();
+    }, []);
+
+    const handleQuizSelection = (quiz) => {
+        setSelectedQuiz(quiz.id);
+        setIsModalVisible(true);
+    }
 
     const handleContentFromChapter = () => {
-        const pageSize = 1;
+        const pagePerChapter = 1;
         const totalChapters = chapters.length;
-        const totalPages = Math.ceil(totalChapters / pageSize);
+        const totalPages = Math.ceil(totalChapters / pagePerChapter);
 
         const currentPageChapters = _.slice(
             chapters,
-            (currentPage - 1) * pageSize,
-            currentPage * pageSize
+            (currentPage - 1) * pagePerChapter,
+            currentPage * pagePerChapter
         );
 
-        return currentPageChapters.map(({chapter}, index) => (
-            <div key={index}>
-                <h1 className={'title'}> {chapter.title} </h1>
-                <p className={'subtitle'}> {chapter.contents[0].title} </p>
-                <p className={'text'} dangerouslySetInnerHTML={{ __html: chapter.contents[0].text}}></p>
+        return currentPageChapters.map(({chapter}, index) => {
+            const chapterIndex = (currentPage - 1) * pagePerChapter + index;
+            const isLastContentLastPage = chapterIndex === totalChapters - 1;
 
-            </div>
-        ))
-    }
+            return (
+                <div key={index}>
+                    <h1 className={'title'}> {chapter.title} </h1>
+                    <p className={'subtitle'}> {chapter.contents[0].title} </p>
+                    <p className={'text'} dangerouslySetInnerHTML={{__html: chapter.contents[0].text}}></p>
+
+                     {isLastContentLastPage && (
+                        <>
+                            <div  className={'button-container'}>
+                                {
+                                    getQuiz.map((quizInfo) => (
+
+                                    <button className={'link-button'} key={quizInfo.quiz.id} onClick={() => handleQuizSelection(quizInfo.quiz)}>
+                                    <span className="circle" aria-hidden="true">
+                                    <span className="icon arrow"></span>
+                                    </span>
+                                    <span className="button-text"> {quizInfo.quiz.title}</span>
+                                    </button>
+                                    ))
+                                }
+
+                            </div>
+
+                            {
+                                isModalVisible && selectedQuiz && (
+                                    <Modal
+                                        open={isModalVisible}
+                                        onOk={() => setIsModalVisible(false)}
+                                        onCancel={() => setIsModalVisible(false)}
+                                        okText="Submit"
+                                        maskClosable={false}
+                                        width={1500}
+                                    >
+                                        <SurveyComponent quizzes={getQuiz} quizId={selectedQuiz} startPage={chapterStartPage}/>
+                                    </Modal>
+                                )
+                            }
+
+                            <div className={'button-container'}>
+                                <button className={'link-button'} onClick={() => openViewer()}>
+                                    <span className="circle" aria-hidden="true">
+                                        <span className="icon arrow"></span>
+                                    </span>
+                                    <span className="button-text">Medical Viewer</span>
+                                </button>
+
+                                <button className={'link-button'} onClick={() => openDicomServer()}>
+                                    <span className="circle" aria-hidden="true">
+                                        <span className="icon arrow"></span>
+                                    </span>
+                                    <span className="button-text">DICOM4CHE</span>
+                                </button>
+                            </div>
+
+                        </>
+                   )}
+                </div>
+            );
+        });
+     };
 
     return (
         <div>
@@ -189,7 +268,7 @@ export default function Content() {
 
             <div className={'soft-container'}>
                 <div className={'body-container'}>
-                   {handleContentFromChapter()}
+                    {handleContentFromChapter()}
 
                     <div className={'pagination'}>
                         <Pagination
