@@ -10,16 +10,17 @@ COPY . .
 
 RUN yarn run build
 
-FROM nginx:alpine
+FROM node:14
 
 WORKDIR /app
 
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=builder /app/build ./build
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/yarn.lock ./
 
 RUN yarn global add react-scripts@4.0.3
 
-EXPOSE 80
+EXPOSE 4000
 
-CMD ["nginx", "-g", "daemon off;"]
-
+CMD ["yarn", "start"]
 
