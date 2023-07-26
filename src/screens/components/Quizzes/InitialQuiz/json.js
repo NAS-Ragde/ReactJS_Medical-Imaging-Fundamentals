@@ -2,8 +2,8 @@ export const quizPattern = {
     "title": "",
     "showProgressBar": "bottom",
     "showTimerPanel": "top",
-    "maxTimeToFinishPage": 1500,
-    "maxTimeToFinish": 15000,
+    "maxTimeToFinishPage": 30,
+    "maxTimeToFinish": 150,
     "firstPageIsStarted": true,
     "startSurveyText": "Start Quiz",
     "pages": [],
@@ -24,7 +24,7 @@ export const finalEvaluationStartPage = {
     "elements": [
         {
             "type": "html",
-            "html": "Test. <br>You will have 15 seconds for every question and 2 minutes and 30 seconds to end the quiz.<br>Happy <b>Start Quiz</b> to begin."
+            "html": "Test. <br>You have 2 minutes and 30 seconds to end the quiz.<br>Click <b>Start Quiz</b> to begin."
         },
     ]
 }
@@ -33,7 +33,7 @@ export const chapterStartPage = {
     "elements": [
         {
             "type": "html",
-            "html": "You are about to start a short quiz to evaluate your knowledge about the previous content. <br>You will have 15 seconds for every question and 2 minutes and 30 seconds to end the quiz.<br>Happy <b>Start Quiz</b> to begin."
+            "html": "You are about to start a short quiz to evaluate your knowledge about the previous content. <br>You  have 2 minutes and 30 seconds to end the quiz.<br>Click <b>Start Quiz</b> to begin."
         },
     ]
 }
