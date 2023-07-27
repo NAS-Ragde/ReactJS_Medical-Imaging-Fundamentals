@@ -20,7 +20,7 @@ COPY --from=builder /app/yarn.lock ./
 
 RUN yarn global add react-scripts@4.0.3
 
-EXPOSE 4000
+EXPOSE 80
 
 CMD ["yarn", "start"]
 
