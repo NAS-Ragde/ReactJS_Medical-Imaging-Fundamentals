@@ -202,6 +202,9 @@ ul {
 .text dd {
     line-height: 4.5vh;
 }
+.text ol {
+    line-height: 3.3vh;
+}
 
 .button-container {
     display: flex;
