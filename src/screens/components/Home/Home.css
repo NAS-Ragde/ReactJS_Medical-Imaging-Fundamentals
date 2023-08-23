@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-padding: 35px;
     padding-inline: 40px;
     background-color: #FF9966;
 }
@@ -27,45 +26,46 @@
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-content: center;
-    backgroundColor: #FCFCFC;
-    padding-inline: 30px;
-    padding-top: 30px;
-    max-height: 100vh;
+    background-color: #fcfcfc;
+    padding: 50px 80px;
+    margin: 0;
+    min-height: 80vh;
+    position: relative;
 }
 
 .textWrapper {
+    display: flex;
     flex-direction: column;
     background-color: #FFFFFF;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #E66A16;
+    border: 2px solid #E66A16;
     border-radius: 8px;
     margin-bottom: 30px;
     overflow: auto;
+    max-height: calc(100vh - 150px);
 }
 .welcome {
     color: #3B3838;
-    padding-left: 20px;
-    margin-bottom: -20px;
+    padding: 0 20px;
+    margin-bottom: 0;
+    text-align: center;
 }
 
 .course-text {
     font-size: 22px;
     font-weight: 500;
-    color: #3B3838;
-    text-align: start;
+    color: #6A6969;
+    text-align: center;
     padding-inline: 20px;
 }
 
-.table{
+.table {
     display: flex;
-    min-width: 70vw;
-    min-height: 40vh;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
     margin: 10px;
-    align-items: center;
-    justify-content: space-evenly;
     overflow: auto;
 }
 
@@ -78,18 +78,6 @@
     overflow: auto;
 }
 
-@media (min-width: 768px) {
-    .tr-text {
-        font-size: 20px;
-    }
-}
-
-@media (min-width: 1024px) {
-    .tr-text {
-        font-size: 24px;
-    }
-}
-
 .list-id {
     display: flex;
     align-content: flex-start;
@@ -100,15 +88,96 @@
 }
 .list-title {
     max-width: 70vw;
-    min-width: 50vw;
+    min-width: 40vw;
     text-align: left;
     padding: 10px;
 }
 .list-status {
-    width: 15vw;
-    text-align: left;
+    width: 5vw;
+    text-align: center;
     padding: 10px;
 }
+.start-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.start-button {
+    color: #E66A16;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    max-width: 100%;
+    padding: 10px 20px;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    margin-top: 20px;
+    background :linear-gradient( to right, #E23E02, #FF7F50, #F89B29 );
+}
+
+.footerText {
+    color: #FCFCFC;
+    font-size: 14px;
+    text-align: center;
+}
+
+@media (min-width: 780px) {
+    .header-title {
+        font-size: 28px;
+    }
+
+    .course-text {
+        font-size: 24px;
+    }
+
+    .tr-text {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .header-title {
+        font-size: 32px;
+    }
+
+    .course-text {
+        font-size: 26px;
+    }
+
+    .tr-text {
+        font-size: 24px;
+    }
+
+}
+@media (max-height:800px)  {
+    .container{
+        justify-content: space-around;
+        padding-top: 20px;
+    }
+    .start-button-container{
+        margin-bottom: 50px;
+        position: initial;
+
+    }
+    .start-button{
+        font-size: 1.5rem;
+    }
+
+}
+
 
 /**** Survey Start page ****/
 /* Survey Start-Button text */
@@ -169,34 +238,3 @@
 
 /*** end ***/
 
-.start-button{
-    color: #E66A16;
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
-    align-self: center;
-    width: 300px;
-    cursor: pointer;
-    margin-top: 25px ;
-}
-
-.footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    padding: 32px;
-    border: none;
-    margin-top: 20px;
-    background :linear-gradient( to right, #E23E02, #FF7F50, #F89B29 );
-}
-
-.footerText {
-    color: #FCFCFC;
-    font-size: 14px;
-    align-self: center;
-    text-align: center;
-}

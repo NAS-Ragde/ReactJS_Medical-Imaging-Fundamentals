@@ -3,9 +3,10 @@ import './Home.css'
 import axios from "axios";
 import {CHAPTERS, QUIZZES, STORAGE_KEY} from "../../../api-services/Api";
 import {useNavigate} from "react-router-dom";
-import {Modal, Progress} from "antd";
+import {Modal} from "antd";
 import SurveyComponent from "../Quizzes/InitialQuiz/initialQuiz";
 import {chapterStartPage, finalEvaluationStartPage} from "../Quizzes/InitialQuiz/json";
+import {CheckCircleTwoTone, ClockCircleTwoTone} from "@ant-design/icons";
 
 export default function Home() {
     const [chapters, setChapters] = useState([]);
@@ -57,13 +58,12 @@ export default function Home() {
                                 <td className="list-id">Chapter {item.chapter.id}.</td>
                                 <td className="list-title">{item.chapter.title}</td>
                                 <td className="list-status">{item.status
-                                    ? (<div className={'progress-bar'}><Progress percent={100} size="small"/></div>)
-                                    : (<div className={'progress-bar'}><Progress percent={100} size="small" status={'exception'}/></div>)}
+                                    ? <CheckCircleTwoTone twoToneColor={'#22cb14'}/>
+                                    : <ClockCircleTwoTone twoToneColor={'#FF9966'}/>}
                                 </td>
                             </tr>
                         ))
                 }
-
                 </tbody>
             </table>
         );
@@ -127,7 +127,9 @@ export default function Home() {
                     <ListOfChapters/>
                 </div>
 
-                <span className={'start-button'} onClick={() => navigate('/content')}> Get Started </span>
+                <div className={'start-button-container'}>
+                    <span className={'start-button'} onClick={() => navigate('/content')}> Get Started </span>
+                </div>
             </div>
 
             <div className={'footer'}>
