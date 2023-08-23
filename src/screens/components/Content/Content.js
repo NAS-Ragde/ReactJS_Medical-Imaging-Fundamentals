@@ -250,7 +250,7 @@ export default function Content() {
                     className={'home-button'}
                     onClick={() => navigate('/home')}
                 />
-                <p className={'header-title'}>Chapter I. Introduction </p>
+                <p className={'header-title'}>Content </p>
                 <button
                     className={'nav-menu-Button'}
                     onClick={showDrawer}
