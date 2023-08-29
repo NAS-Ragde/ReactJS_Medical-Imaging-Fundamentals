@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Drawer, Modal, Pagination} from "antd";
 import axios from "axios";
-import {CHAPTERS, QUIZZES, STORAGE_KEY} from "../../../api-services/Api";
+import {CHAPTERS, DICOM4CHE_ADDRESS, QUIZZES, STORAGE_KEY, VIEWER_ADDRESS} from "../../../api-services/Api";
 import _ from "lodash";
 import SurveyComponent from "../Quizzes/InitialQuiz/initialQuiz";
 import {chapterStartPage} from "../Quizzes/InitialQuiz/json";
@@ -31,12 +31,12 @@ export default function Content() {
     };
 
     const openViewer = () => {
-        const url = 'http://localhost:8081/oviyam2';
+        const url = VIEWER_ADDRESS + '/oviyam2';
         window.open(url, '_blank');
     }
 
     const openDicomServer = () => {
-        const url = 'http://localhost:8080/dcm4chee-arc/ui2/';
+        const url = DICOM4CHE_ADDRESS + '/dcm4chee-arc/ui2/';
         window.open(url, '_blank');
     }
 

@@ -107,7 +107,7 @@ button.link-button .button-text {
     margin: 0 0 0 2.5rem;
     color: #282936;
     font-weight: 700;
-    line-height: 1.6;
+    line-height: 1.6rem;
     text-align: center;
 }
 
@@ -182,7 +182,8 @@ ul {
     font-size: 18px;
     color: #3B3838;
     white-space: pre-line;
-    line-height: 3vh;
+    line-height: 2rem;
+    word-wrap: break-word;
 }
 
 .text h2{
@@ -197,13 +198,13 @@ ul {
 
 .text ul {
     list-style-type: revert;
-    line-height: 3.3vh;
+    line-height:2.2rem;
 }
 .text dd {
-    line-height: 4.5vh;
+    line-height: 3rem;
 }
 .text ol {
-    line-height: 3.3vh;
+    line-height: 2.2rem;
 }
 
 .button-container {
