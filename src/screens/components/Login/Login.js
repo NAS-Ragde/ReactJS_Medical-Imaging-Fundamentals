@@ -74,7 +74,7 @@ export default function Login() {
                 </form>
 
                 <p className={"sign-in-text"}> Dont you have an account? {
-                    <span className="sign-in" onClick={()=> navigate('/registration') } >Sign in </span>
+                    <span className="sign-in" onClick={()=> navigate('/registration') } >Sign up </span>
                     }
                 </p>
 
