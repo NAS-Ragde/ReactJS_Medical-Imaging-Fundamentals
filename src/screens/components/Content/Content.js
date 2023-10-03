@@ -31,7 +31,7 @@ export default function Content() {
     };
 
     const openViewer = () => {
-        const url = VIEWER_ADDRESS + '/oviyam2';
+        const url = VIEWER_ADDRESS + '/oviyam';
         window.open(url, '_blank');
     }
 
