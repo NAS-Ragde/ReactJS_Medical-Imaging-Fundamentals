@@ -1,5 +1,5 @@
 import React from "react";
-export const DICOM4CHE_ADDRESS = 'http://localhost:8083';
+export const DICOM4CHE_ADDRESS = 'http://localhost:8080  ';
 export const VIEWER_ADDRESS = 'http://localhost:8081';
 export const SERVER_ADDRESS = 'http://localhost:8088';
 export const LOGIN = SERVER_ADDRESS + '/students/login';

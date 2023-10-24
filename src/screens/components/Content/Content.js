@@ -35,7 +35,7 @@ export default function Content() {
         window.open(url, '_blank');
     }
 
-    const openDicomServer = () => {
+    const openPacsServer = () => {
         const url = DICOM4CHE_ADDRESS + '/dcm4chee-arc/ui2/';
         window.open(url, '_blank');
     }
@@ -120,11 +120,11 @@ export default function Content() {
                         </button>
                     </li>
                     <li className={'removal-bullets'}>
-                        <button className={'link-button'} onClick={() => openDicomServer()}>
+                        <button className={'link-button'} onClick={() => openPacsServer()}>
                                 <span className="circle" aria-hidden="true">
                                   <span className="icon arrow"></span>
                                   </span>
-                            <span className="button-text">DICOM4CHE</span>
+                            <span className="button-text">PACS Server</span>
                         </button>
                     </li>
                 </ul>
@@ -227,11 +227,11 @@ export default function Content() {
                                     <span className="button-text">Medical Viewer</span>
                                 </button>
 
-                                <button className={'link-button'} onClick={() => openDicomServer()}>
+                                <button className={'link-button'} onClick={() => openPacsServer()}>
                                     <span className="circle" aria-hidden="true">
                                         <span className="icon arrow"></span>
                                     </span>
-                                    <span className="button-text">DICOM4CHE</span>
+                                    <span className="button-text">PACS Server</span>
                                 </button>
                             </div>
 
