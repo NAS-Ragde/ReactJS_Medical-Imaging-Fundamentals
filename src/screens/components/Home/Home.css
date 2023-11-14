@@ -11,6 +11,7 @@
     font-weight: 400;
     color: white;
 }
+
 .logout-button {
     background-image: url('/assets/logout.png');
     background-size: cover;
@@ -45,18 +46,19 @@
     overflow: auto;
     max-height: calc(100vh - 150px);
 }
+
 .welcome {
-    color: #3B3838;
+    color: #6A6969;
     padding: 0 20px;
     margin-bottom: 0;
     text-align: center;
 }
 
 .course-text {
-    font-size: 22px;
-    font-weight: 500;
+    /*font-size: 22px;*/
+    font-weight: 400;
     color: #6A6969;
-    text-align: center;
+    text-align: justify;
     padding-inline: 20px;
 }
 
@@ -86,17 +88,20 @@
     padding: 10px;
     text-align: right;
 }
+
 .list-title {
     max-width: 70vw;
     min-width: 40vw;
     text-align: left;
     padding: 10px;
 }
+
 .list-status {
     width: 5vw;
     text-align: center;
     padding: 10px;
 }
+
 .start-button-container {
     display: flex;
     flex-direction: column;
@@ -140,7 +145,7 @@
     }
 
     .course-text {
-        font-size: 24px;
+        font-size: 20px;
     }
 
     .tr-text {
@@ -154,7 +159,7 @@
     }
 
     .course-text {
-        font-size: 26px;
+        font-size: 24px;
     }
 
     .tr-text {
@@ -177,7 +182,6 @@
     }
 
 }
-
 
 /**** Survey Start page ****/
 /* Survey Start-Button text */

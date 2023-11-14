@@ -7,7 +7,7 @@ import {CHAPTERS, DICOM4CHE_ADDRESS, QUIZZES, STORAGE_KEY, VIEWER_ADDRESS} from 
 import _ from "lodash";
 import SurveyComponent from "../Quizzes/InitialQuiz/initialQuiz";
 import {chapterStartPage} from "../Quizzes/InitialQuiz/json";
-
+import DCM4CHE from './DCM4CHE.png';
 export default function Content() {
 
     const navigate = useNavigate();
@@ -116,7 +116,7 @@ export default function Content() {
                                   <span className="circle" aria-hidden="true">
                                   <span className="icon arrow"></span>
                                   </span>
-                            <span className="button-text">Medical Viewer</span>
+                            <span className="button-text">Oviyam Viewer</span>
                         </button>
                     </li>
                     <li className={'removal-bullets'}>
@@ -124,7 +124,7 @@ export default function Content() {
                                 <span className="circle" aria-hidden="true">
                                   <span className="icon arrow"></span>
                                   </span>
-                            <span className="button-text">PACS Server</span>
+                            <span className="button-text">DICOM4CHE PACS</span>
                         </button>
                     </li>
                 </ul>
@@ -220,19 +220,28 @@ export default function Content() {
                             }
 
                             <div className={'button-container'}>
-                                <button className={'link-button'} onClick={() => openViewer()}>
-                                    <span className="circle" aria-hidden="true">
-                                        <span className="icon arrow"></span>
-                                    </span>
-                                    <span className="button-text">Medical Viewer</span>
-                                </button>
-
                                 <button className={'link-button'} onClick={() => openPacsServer()}>
                                     <span className="circle" aria-hidden="true">
                                         <span className="icon arrow"></span>
                                     </span>
-                                    <span className="button-text">PACS Server</span>
+                                    <span className="button-text">DCM4CHE PACS </span>
                                 </button>
+
+                                <button className={'link-button'} onClick={() => openViewer()}>
+                                    <span className="circle" aria-hidden="true">
+                                        <span className="icon arrow"></span>
+                                    </span>
+                                    <span className="button-text">Oviyam Viewer</span>
+                                </button>
+                            </div>
+
+                            <div className={'preview-image'}>
+                                <img
+                                    src={DCM4CHE}
+                                    alt={'preview-image'}
+                                    width={'60%'}
+                                    height={'60%'}
+                                />
                             </div>
 
                         </>
@@ -283,7 +292,7 @@ export default function Content() {
 
 
             <div className={'footer-content'}>
-                <p className={'footerText'}>© 2023 Nayeli A. Silva, Inc.</p>
+                <p className={'footerText'}>© 2023 Nayeli A. Silva, Reserved Rights</p>
             </div>
 
         </div>

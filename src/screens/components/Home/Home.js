@@ -12,7 +12,9 @@ export default function Home() {
     const [chapters, setChapters] = useState([]);
     const [quizzes, setQuizzes] = useState();
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const welcomeText = 'This course is prepared to give you fundamental insights about Medical Imaging.';
+    const welcomeText = 'Explore the fundamentals of medical imaging in this course, offering comprehensive theoretical insights and chapter-specific quizzes to challenge your understanding.'+
+                                ' In each chapter you will find a wealth of additional resources, including videos, images, and external materials.'+
+                                ' In addition, you have the opportunity to dive into a lifelike practice environment to improve the skills of managing and visualizing medical images.';
 
     useEffect(() => {
         const fetchChatpers = async () => {
@@ -104,7 +106,7 @@ export default function Home() {
             {/*body content*/}
             <div className={'container'}>
                 <div className={'textWrapper'}>
-                    <h1 className={'welcome'}>Welcome,</h1>
+                    <h1 className={'welcome'}>Welcome to this course!,</h1>
                     <p className={'course-text'}>{welcomeText}</p>
                 </div>
 
