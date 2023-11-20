@@ -154,10 +154,18 @@ button:hover .button-text {
     min-height: 100vh;
     min-width: 80vw;
     margin: 3vh 3vw;
+}
+.body-container div:not(.allow-copy) {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+.allow-copy {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 ul {
@@ -206,6 +214,11 @@ ul {
 .text ol {
     line-height: 2.2rem;
 }
+.button-container-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
 
 .button-container {
     display: flex;
@@ -217,8 +230,8 @@ ul {
 .preview-image{
     display: flex;
     justify-content: center;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .footer-content {

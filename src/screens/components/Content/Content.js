@@ -169,7 +169,7 @@ export default function Content() {
     const handleContentFromChapter = () => {
         const pagePerChapter = 1;
         const totalChapters = chapters.length;
-        const totalPages = Math.ceil(totalChapters / pagePerChapter);
+        Math.ceil(totalChapters / pagePerChapter);
 
         const currentPageChapters = _.slice(
             chapters,
@@ -183,65 +183,72 @@ export default function Content() {
 
             return (
                 <div key={index}>
-                    <h1 className={'title'}> {chapter.title} </h1>
+                    <h1 className={'title'}>Chapter {chapter.id}. {chapter.title} </h1>
                     <p className={'subtitle'}> {chapter.contents[0].title} </p>
                     <p className={'text'} dangerouslySetInnerHTML={{__html: chapter.contents[0].text}}></p>
 
                      {isLastContentLastPage && (
-                        <>
-                            <div  className={'button-container'}>
-                                {
-                                    getQuiz.map((quizInfo) => (
+                         <>
+                            <div className={'button-container-wrapper'}>
+                                <div  className={'button-container'}>
+                                    {
+                                        getQuiz.map((quizInfo) => (
 
-                                    <button className={'link-button'} key={quizInfo.quiz.id} onClick={() => handleQuizSelection(quizInfo.quiz)}>
-                                    <span className="circle" aria-hidden="true">
-                                    <span className="icon arrow"></span>
-                                    </span>
-                                    <span className="button-text"> {quizInfo.quiz.title}</span>
-                                    </button>
-                                    ))
+                                        <button className={'link-button'} key={quizInfo.quiz.id} onClick={() => handleQuizSelection(quizInfo.quiz)}>
+                                        <span className="circle" aria-hidden="true">
+                                        <span className="icon arrow"></span>
+                                        </span>
+                                        <span className="button-text"> {quizInfo.quiz.title}</span>
+                                        </button>
+                                        ))
+                                    }
+
+                                </div>
+
+                                {
+                                    isModalVisible && selectedQuiz && (
+                                        <Modal
+                                            open={isModalVisible}
+                                            onOk={() => setIsModalVisible(false)}
+                                            onCancel={() => setIsModalVisible(false)}
+                                            okText="Submit"
+                                            maskClosable={false}
+                                            width={1500}
+                                        >
+                                            <SurveyComponent quizzes={getQuiz} quizId={selectedQuiz} startPage={chapterStartPage}/>
+                                        </Modal>
+                                    )
                                 }
 
-                            </div>
+                                <div className={'button-container'}>
+                                    <button className={'link-button'} onClick={() => openPacsServer()}>
+                                        <span className="circle" aria-hidden="true">
+                                            <span className="icon arrow"></span>
+                                        </span>
+                                        <span className="button-text">DCM4CHE PACS </span>
+                                    </button>
 
-                            {
-                                isModalVisible && selectedQuiz && (
-                                    <Modal
-                                        open={isModalVisible}
-                                        onOk={() => setIsModalVisible(false)}
-                                        onCancel={() => setIsModalVisible(false)}
-                                        okText="Submit"
-                                        maskClosable={false}
-                                        width={1500}
-                                    >
-                                        <SurveyComponent quizzes={getQuiz} quizId={selectedQuiz} startPage={chapterStartPage}/>
-                                    </Modal>
-                                )
-                            }
+                                    <button className={'link-button'} onClick={() => openViewer()}>
+                                        <span className="circle" aria-hidden="true">
+                                            <span className="icon arrow"></span>
+                                        </span>
+                                        <span className="button-text">Oviyam Viewer</span>
+                                    </button>
 
-                            <div className={'button-container'}>
-                                <button className={'link-button'} onClick={() => openPacsServer()}>
-                                    <span className="circle" aria-hidden="true">
-                                        <span className="icon arrow"></span>
-                                    </span>
-                                    <span className="button-text">DCM4CHE PACS </span>
-                                </button>
-
-                                <button className={'link-button'} onClick={() => openViewer()}>
-                                    <span className="circle" aria-hidden="true">
-                                        <span className="icon arrow"></span>
-                                    </span>
-                                    <span className="button-text">Oviyam Viewer</span>
-                                </button>
+                                    <div className={'allow-copy'}>
+                                        <p className={'text'}>Oviyam User: WebAdmin</p>
+                                        <p className={'text'}>Oviyam Password: password</p>
+                                    </div>
+                                </div>
                             </div>
 
                             <div className={'preview-image'}>
-                                <img
-                                    src={DCM4CHE}
-                                    alt={'preview-image'}
-                                    width={'60%'}
-                                    height={'60%'}
-                                />
+                                 <img
+                                     src={DCM4CHE}
+                                     alt={'preview-image'}
+                                     width={'60%'}
+                                     height={'60%'}
+                                 />
                             </div>
 
                         </>
@@ -259,7 +266,7 @@ export default function Content() {
                     className={'home-button'}
                     onClick={() => navigate('/home')}
                 />
-                <p className={'header-title'}>Content </p>
+                <p className={'header-title'}>Content</p>
                 <button
                     className={'nav-menu-Button'}
                     onClick={showDrawer}
@@ -292,7 +299,7 @@ export default function Content() {
 
 
             <div className={'footer-content'}>
-                <p className={'footerText'}>© 2023 Nayeli A. Silva, Reserved Rights</p>
+                <p className={'footerText'}>© 2023 Nayeli A. Silva. All Reserved Rights</p>
             </div>
 
         </div>

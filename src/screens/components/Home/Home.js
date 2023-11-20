@@ -5,7 +5,7 @@ import {CHAPTERS, QUIZZES, STORAGE_KEY} from "../../../api-services/Api";
 import {useNavigate} from "react-router-dom";
 import {Modal} from "antd";
 import SurveyComponent from "../Quizzes/InitialQuiz/initialQuiz";
-import {chapterStartPage, finalEvaluationStartPage} from "../Quizzes/InitialQuiz/json";
+import {chapterStartPage} from "../Quizzes/InitialQuiz/json";
 import {CheckCircleTwoTone, ClockCircleTwoTone} from "@ant-design/icons";
 
 export default function Home() {
@@ -87,7 +87,7 @@ export default function Home() {
     };
 
     const handleCancel = () => {
-        setIsModalVisible(false);
+        //setIsModalVisible(false);
         localStorage.setItem('modalShownBefore', 'true');
     };
 
@@ -135,7 +135,7 @@ export default function Home() {
             </div>
 
             <div className={'footer'}>
-                <p className={'footerText'}>© 2023 Nayeli A. Silva, Inc.</p>
+                <p className={'footerText'}>© 2023 Nayeli A. Silva. All Reserved Rights</p>
             </div>
 
         </div>
