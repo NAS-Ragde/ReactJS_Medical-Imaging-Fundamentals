@@ -12,6 +12,10 @@ export default function Registration () {
 
      const [password, setPassword] = useState('');
      const [confirmPassword, setConfirmPassword] = useState('');
+
+     const [error, setError] = useState('');
+     const [isCheckboxSelected, setCheckboxSelection] = useState('');
+
      let [isValidated] = useState('false');
 
     // localStorage.setItem('uuid', response.uuid);
@@ -40,16 +44,23 @@ export default function Registration () {
         return console.log('process incomplete', value)
     }
 
+
+    const termsAndConditions = "I consent to share my data for the purpose of this academic project research."+ "\n"+
+                                       "The information provided will be handled in accordance with GDPR regulations." ;
+
+
+    const acceptDataUseBox = (acceptedTerms) => {
+        return setCheckboxSelection(acceptedTerms.target.checked) && setError('');
+    }
+
     const navigate = useNavigate();
     const redirectUser = (email) => {
         const fillEmailInput = email;
         return navigate('/login');
     }
 
-    const registration = async (data) => {
-        console.log(data);
-        if (Object.keys(data.length !== 0)) {
-
+    const onSubmit = async (data) => {
+        if (Object.keys(data).length !== 0 && isCheckboxSelected) {
             await axios
                 .post(STUDENTS_REGISTRATION + "?username=" + data.email + "&password=" + data.password)
                 .then ((response) => {
@@ -61,7 +72,9 @@ export default function Registration () {
                     console.log(error);
                 })
 
-    }}
+        }
+        setError('Error in registration, please check your information again or accept terms of use');
+    }
 
     return(
         <div className="background">
@@ -100,11 +113,20 @@ export default function Registration () {
                     { }
                 </div>
 
-               <form className={'submission'} onSubmit={handleSubmit(registration)}>
+               <form className={'submission'} onSubmit={handleSubmit(onSubmit)}>
+                   <div className={"checkbox-wrapper"}>
+                       <input
+                           type={'checkbox'}
+                           onChange={acceptDataUseBox}
+                       />
+                       <p className={'checkbox-legend'}>{termsAndConditions}</p>
+                   </div>
+
                    <input
                        type ={'Submit'}
                        className={'submission'}
                    />
+                   {error && <p className={'error'}>{error}</p>}
                </form>
 
 
@@ -112,21 +134,6 @@ export default function Registration () {
         </div>
     );
 }
-
-
-//
-//     ()=> {
-//         passwordCharacters(password)
-//             ? setPassword(password)}
-//             : console.log('error in characters')}
-//   }
-
-
-//
-//    ()=> {
-//        passwordValidation(confirmPassword)}
-//       }
-//
 
 
 

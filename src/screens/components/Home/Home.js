@@ -87,7 +87,7 @@ export default function Home() {
     };
 
     const handleCancel = () => {
-        //setIsModalVisible(false);
+        setIsModalVisible(false);
         localStorage.setItem('modalShownBefore', 'true');
     };
 
