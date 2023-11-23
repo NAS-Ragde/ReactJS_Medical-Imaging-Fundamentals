@@ -6,6 +6,8 @@ import "../quizzes.css";
 import {quizPattern} from "./json";
 
 function getQuizById(quizzes, quizId) {
+    console.log('quizzes', quizzes);
+    console.log('quizId', quizId);
     return quizzes.find(quizData => quizData.quiz.id === quizId).quiz
 }
 
