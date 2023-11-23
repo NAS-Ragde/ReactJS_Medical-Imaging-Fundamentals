@@ -6,9 +6,22 @@ import "../quizzes.css";
 import {quizPattern} from "./json";
 
 function getQuizById(quizzes, quizId) {
+    console.error('quizzes', quizzes);
+    console.error('quizId', quizId);
     console.log('quizzes', quizzes);
     console.log('quizId', quizId);
-    return quizzes.find(quizData => quizData.quiz.id === quizId).quiz
+    const quiz = quizzes.find(quizData => quizData.quiz.id === quizId);
+
+    if (quiz) {
+        return quiz.quiz;
+    } else {
+        return {
+            title: 'test',
+            questions: []
+        }
+    }
+
+    // return quizzes.find(quizData => quizData.quiz.id === quizId).quiz
 }
 
 function SurveyComponent({quizzes, quizId, startPage}) {
