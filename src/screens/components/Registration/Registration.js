@@ -1,28 +1,23 @@
 import React, {useState} from "react";
 import './Registration.css'
-import {useForm} from "react-hook-form";
+import {Controller, useForm} from "react-hook-form";
 import axios from "axios";
 import {isLoggedIn, STUDENTS_REGISTRATION} from "../../../api-services/Api";
-import {Link, Navigate, Route, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 export default function Registration () {
 
-     const [getEmail, setEmail] = useState('');
-     const [auth, setAuth] = useState('');
-
-     const [password, setPassword] = useState('');
-     const [confirmPassword, setConfirmPassword] = useState('');
-
+     const [email, setEmail] = useState('');
      const [error, setError] = useState('');
      const [isCheckboxSelected, setCheckboxSelection] = useState('');
+     // let [isValidated] = useState('false');
 
-     let [isValidated] = useState('false');
-
-    // localStorage.setItem('uuid', response.uuid);
-    // localStorage.setItem('username', response.username);
+     // localStorage.setItem('uuid', response.uuid);
+     // localStorage.setItem('username', response.username);
 
     const {
         control,
+        watch,
         register,
         handleSubmit,
         formState: {isSubmitted, errors},
@@ -32,17 +27,30 @@ export default function Registration () {
             email: '',
             password: '',
             confirmPassword:'',
+            checkbox: false,
         }
     })
 
-    const passwordCharacters = (value) => {
-        const characters = new RegExp( /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*['!"#$%&'()*+,/\-.:;<=>?@[\]^_`{|}~']).{8,}$/);
-        return  isValidated = characters.test(value) ? isValidated : errors
-    }
+    const password = watch('password', '');
+    const confirmPasswod = watch('confirmPassword', '');
 
-    const passwordValidation =  (value) => {
-        return console.log('process incomplete', value)
-    }
+    React.useEffect( () => {
+        if (password !== confirmPasswod){
+            setError('Passwords do not match');
+        } else {
+            setError('')
+        }
+    },[password,confirmPasswod,setError])
+
+
+    // const passwordCharacters = (value) => {
+    //     const characters = new RegExp( /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*['!"#$%&'()*+,/\-.:;<=>?@[\]^_`{|}~']).{8,}$/);
+    //     return  isValidated = characters.test(value) ? isValidated : errors
+    // }
+
+    // const passwordValidation =  (value) => {
+    //     return console.log('process incomplete', value)
+    // }
 
 
     const termsAndConditions = "I consent to share my data for the purpose of this academic project research."+ "\n"+
@@ -65,7 +73,8 @@ export default function Registration () {
                 .post(STUDENTS_REGISTRATION + "?username=" + data.email + "&password=" + data.password)
                 .then ((response) => {
                         console.log('Posted:', response.data);
-                        redirectUser(setEmail(response.data.email));
+                        const userEmail = response.data.email;
+                        redirectUser(setEmail(userEmail));
                     }
                 )
                 .catch((error) => {
@@ -81,39 +90,61 @@ export default function Registration () {
             <div className="loginWrapper">
                 <h1 className="headerRegistration"> Registration </h1>
 
-                <div className="input-wrapper">
-                    <input
-                        {...register("email", {required: true}) }
-                        autoCapitalize={'off'}
-                        placeholder="Email"
-                        type="email"
-                        className="input-registration"
-                        maxLength={50}
-                    />
-                </div>
-
-                <div className="input-wrapper">
-                    <input
-                        {...register("password", {required: true}) }
-                        placeholder="Password"
-                        type="password"
-                        className="input-registration"
-                        autoComplete={'false'}
-                    />
-                </div>
-
-                <div className="input-wrapper">
-                    <input
-                        {...register("confirmPassword", {required: true}) }
-                        placeholder="Confirm Password"
-                        type="password"
-                        className="input-registration"
-                        autoComplete={'false'}
-                    />
-                    { }
-                </div>
-
                <form className={'submission'} onSubmit={handleSubmit(onSubmit)}>
+                   <div className="input-wrapper">
+                       <Controller
+                           control={control}
+                           name={'email'}
+                           rules={{required: true}}
+                           render={({ field })=>
+                               <input
+                                   {...register("email", {required: true}) }
+                                   autoCapitalize={'off'}
+                                   placeholder="Email"
+                                   type="email"
+                                   className={errors.email? 'input-registration error': 'input-registration'}
+                                   maxLength={50}
+                               />
+                           }
+                       />
+                   </div>
+
+                   <div className="input-wrapper">
+                       <Controller
+                           control={control}
+                           name={'password'}
+                           rules={{required: true}}
+                           render={({ field })=>
+                               <input
+                                   {...register("password", ) }
+                                   placeholder="Password"
+                                   type="password"
+                                   className={errors.password? 'input-registration error': 'input-registration'}
+                                   autoComplete={'false'}
+                                   maxLength={30}
+                               />
+                           }
+                       />
+                   </div>
+
+                   <div className="input-wrapper">
+                       <Controller
+                           control={control}
+                           name={'confirmPassword'}
+                           rules={{required: true}}
+                           render={({ field })=>
+                               <input
+                                   {...register("confirmPassword", {required: true}) }
+                                   placeholder="Confirm Password"
+                                   type="password"
+                                   className={errors.confirmPassword? 'input-registration error': 'input-registration'}
+                                   autoComplete={'false'}
+                                   maxLength={30}
+                               />
+                           }
+                       />
+                   </div>
+
                    <div className={"checkbox-wrapper"}>
                        <input
                            type={'checkbox'}
@@ -124,7 +155,7 @@ export default function Registration () {
 
                    <input
                        type ={'Submit'}
-                       className={'submission'}
+                       className={'submit-button'}
                    />
                    {error && <p className={'error'}>{error}</p>}
                </form>
