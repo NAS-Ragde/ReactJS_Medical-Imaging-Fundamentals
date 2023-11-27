@@ -17,7 +17,7 @@ export default function Home() {
                                 ' In addition, you have the opportunity to dive into a lifelike practice environment to improve the skills of managing and visualizing medical images.';
 
     useEffect(() => {
-        const fetchChatpers = async () => {
+        const fetchChapters = async () => {
             try {
                 const response =
                     await axios.get(CHAPTERS + '?uuid=' + localStorage.getItem(STORAGE_KEY.UUID) + '&username=' + localStorage.getItem(STORAGE_KEY.USERNAME));
@@ -26,7 +26,7 @@ export default function Home() {
                 console.log(error)
             }
         };
-        fetchChatpers();
+        fetchChapters();
     }, []);
 
     useEffect(() => {

@@ -64,10 +64,9 @@ export default function Registration () {
                 )
                 .catch((error) => {
                     console.log(error, "Error in Registration");
+                    setError('Error in registration, please check your information again or accept terms of use');
                 })
-
         }
-        setError('Error in registration, please check your information again or accept terms of use');
     }
 
     return(
