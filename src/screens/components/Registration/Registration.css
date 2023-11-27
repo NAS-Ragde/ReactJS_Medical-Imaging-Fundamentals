@@ -19,7 +19,7 @@
 }
 .headerRegistration {
     color: white;
-    font-size: 40px;
+    font-size: 3rem;
     text-align: center;
     font-weight: bold;
     padding-inline: 15px;
@@ -75,5 +75,11 @@
     font-size: 18px;
     font-weight: 400;
     color: #be0404;
+    padding-left: 1rem;
+}
+.success{
+    font-size: 20px;
+    font-weight: 400;
+    color: #5f8005;
     padding-left: 1rem;
 }

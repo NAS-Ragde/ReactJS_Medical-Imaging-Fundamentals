@@ -4,12 +4,14 @@ import {Controller, useForm} from "react-hook-form";
 import axios from "axios";
 import {STUDENTS_REGISTRATION} from "../../../api-services/Api";
 import {useNavigate} from "react-router-dom";
+import {Modal} from "antd";
 
 export default function Registration () {
 
      const [email, setEmail] = useState('');
      const [error, setError] = useState('');
      const [isCheckboxSelected, setCheckboxSelection] = useState('');
+     const [isModalVisible, setModalVisible]= useState(false);
 
 
     const {
@@ -38,6 +40,10 @@ export default function Registration () {
         return setCheckboxSelection(acceptedTerms.target.checked) && setError('');
     }
 
+    const handleRegistrationModal = () => {
+        setModalVisible(false);
+        redirectUser(email)
+    }
 
     const navigate = useNavigate();
     const redirectUser = (email) => {
@@ -53,7 +59,7 @@ export default function Registration () {
                         console.log('Posted:', response.data);
                         const userEmail = response.data.username;
                         setEmail(userEmail);
-                        redirectUser(userEmail);
+                        setModalVisible(true);
                     }
                 )
                 .catch((error) => {
@@ -147,8 +153,18 @@ export default function Registration () {
                    {errors.confirmPassword && <p className={'error'}>{errors.confirmPassword.message}</p>}
                    {error && <p className={'error'}>{error}</p>}
                </form>
-
-
+                {isModalVisible && (
+                    <Modal
+                        title={'Successful Registration'}
+                        open={isModalVisible}
+                        onOk={handleRegistrationModal}
+                        onCancel={null}
+                        cancelButtonProps={true}
+                        titleColor className={'success'}
+                    >
+                        <p>Your account was successfully register. Please continue to proceed to Login.</p>
+                    </Modal>
+                )}
             </div>
         </div>
     );
