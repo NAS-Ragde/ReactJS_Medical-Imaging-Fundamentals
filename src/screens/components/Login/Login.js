@@ -11,7 +11,7 @@ export default function Login() {
     const {
         register,
         handleSubmit,
-        formState: {errors, isSubmitted }
+        formState: {errors }
     } = useForm({
         mode: 'all',
         defaultValues:{
@@ -21,7 +21,7 @@ export default function Login() {
     })
 
     useEffect(()=> {
-        errors? setError('Empty credentials are not valid for login.'):  setError('');
+        Object.keys(errors).length ? setError('Empty credentials are not valid for login.') :  setError('');
     },[errors,setError])
 
     const navigate = useNavigate();
@@ -31,7 +31,6 @@ export default function Login() {
     }
 
     const login =async (data) => {
-        console.log(data);
         if (Object.keys(data.length !== 0)) {
 
             await axios
@@ -43,11 +42,16 @@ export default function Login() {
                 .then(() => {
                     redirectUser()
                 })
-                .catch((error) => {
-                    console.log(error);
+                .catch(({response}) => {
+                    console.error(response?.status);
+                    if (response?.status === 404) {
+                        setError('Error in Login, please verify your account.');
+                    } else {
+                        setError('An unexpected Error occurred.');
+                    }
                 })
 
-        } setError('Error in Login, please verify your account');
+        }
     }
 
     return (
@@ -74,7 +78,9 @@ export default function Login() {
                     className={'login'}
                 >
                     <span className={'login'}  onClick={handleSubmit(login)}>Login</span>
-                    {isSubmitted && errors && <p className={'error-login'}>{error}</p>}
+
+
+                    {errors && <p className={'error-login'}>{error}</p>}
                 </form>
 
                 <p className={"sign-in-text"}> Dont you have an account? {
