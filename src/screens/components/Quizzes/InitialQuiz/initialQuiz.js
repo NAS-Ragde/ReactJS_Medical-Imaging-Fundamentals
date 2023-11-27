@@ -1,15 +1,15 @@
 import React from "react";
-import { Model } from "survey-core";
-import { Survey } from "survey-react-ui";
+import {Model} from "survey-core";
+import {Survey} from "survey-react-ui";
 import "survey-core/defaultV2.min.css";
 import "../quizzes.css";
 import {quizPattern} from "./json";
+import axios from "axios";
+import {ANSWERS, STORAGE_KEY} from "../../../../api-services/Api";
 
 function getQuizById(quizzes, quizId) {
     console.error('quizzes', quizzes);
     console.error('quizId', quizId);
-    console.log('quizzes', quizzes);
-    console.log('quizId', quizId);
     const quiz = quizzes.find(quizData => quizData.quiz.id === quizId);
 
     if (quiz) {
@@ -51,34 +51,44 @@ function SurveyComponent({quizzes, quizId, startPage}) {
 
     const survey = new Model(json);
 
-    survey.onComplete.add((sender, options) => {
-        console.log(JSON.stringify(sender.data, null, 3));
-        console.log(sender.data);
+    async function handleStudentAnswers(quizAnswers) {
+        return axios.post(ANSWERS + '?uuid=' + localStorage.getItem(STORAGE_KEY.UUID) + '&username=' + localStorage.getItem(STORAGE_KEY.USERNAME), quizAnswers);
+    }
 
-        // retrieve id from questions and send it to backend
-        // loop over sender.data and check answer in
+    survey.onComplete.add((sender) => {
+        const quizAnswers = Object.entries(sender.data).map(([questionId, quizAnswerText]) => {
+            const question = quiz.questions.find(question => question.id === Number(questionId));
+            const answerId = question.answers.find(answer => answer.text === quizAnswerText).id;
+
+            return {
+                question,
+                answerId
+            };
+        });
+
+        handleStudentAnswers(quizAnswers).then(() => console.log('Answers submitted!'));
     });
 
     const correctStr = "Correct";
     const incorrectStr = "Incorrect";
 
     // Builds an HTML string to display in a question title
-    function getTextHtml (text, str, isCorrect) {
+    function getTextHtml(text, str, isCorrect) {
         if (text.indexOf(str) < 0)
             return undefined;
 
         return text.substring(0, text.indexOf(str)) +
-            "<span class='" +  (isCorrect ? "correctAnswer" : "incorrectAnswer" ) + "'>" + str + "</span>";
+            "<span class='" + (isCorrect ? "correctAnswer" : "incorrectAnswer") + "'>" + str + "</span>";
     }
 
     // Compares the correct answer with a given answer and returns `true` if they are equal
-    function isAnswerCorrect (question) {
+    function isAnswerCorrect(question) {
         return question.correctAnswer === question.value;
     }
 
     // Adds "Correct" or "Incorrect" to a question title
-    function changeTitle (question) {
-        question.title =  question.title + ' ' + (isAnswerCorrect(question) ? correctStr : incorrectStr);
+    function changeTitle(question) {
+        question.title = question.title + ' ' + (isAnswerCorrect(question) ? correctStr : incorrectStr);
     }
 
     survey.onValueChanged.add((_, options) => {
@@ -98,8 +108,8 @@ function SurveyComponent({quizzes, quizId, startPage}) {
         }
     });
     return (
-        
-        <Survey model={survey} />
+
+        <Survey model={survey}/>
     );
 }
 

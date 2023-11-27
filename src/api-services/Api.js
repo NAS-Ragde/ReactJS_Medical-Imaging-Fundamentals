@@ -5,7 +5,7 @@ export const LOGIN = SERVER_ADDRESS + '/students/login';
 export const STUDENTS_REGISTRATION = SERVER_ADDRESS + '/students/register';
 export const CHAPTERS = SERVER_ADDRESS + '/chapters';
 export const QUIZZES = SERVER_ADDRESS + '/quizes';
-export const QUIZ = SERVER_ADDRESS + '/quizes';
+export const ANSWERS = SERVER_ADDRESS + '/answers';
 
 export const STORAGE_KEY = {
     UUID: 'uuid',
