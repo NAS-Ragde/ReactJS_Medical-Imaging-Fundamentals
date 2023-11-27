@@ -64,3 +64,9 @@
     text-align: center;
     cursor: pointer;
 }
+.error-login{
+    font-size: 18px;
+    font-weight: 400;
+    color: #be0404;
+    padding-left: 1rem;
+}
