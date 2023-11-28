@@ -158,6 +158,7 @@ export default function Registration () {
                         open={isModalVisible}
                         onOk={handleRegistrationModal}
                         onCancel={null}
+                        okText={'continue'}
                         cancelButtonProps={true}
                         titleColor className={'success'}
                     >

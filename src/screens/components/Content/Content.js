@@ -299,7 +299,12 @@ export default function Content() {
 
 
             <div className={'footer-content'}>
-                <p className={'footerText'}>© 2023 Nayeli A. Silva. All Reserved Rights</p>
+                <button
+                    className={'linkedin-button'}
+                    onClick={() => window.open('https://www.linkedin.com/in/ann-user1597530-sp', '_blank') }
+                >
+                </button>
+                <p className={'footerText'}>2023 Nayeli A. Silva. All Reserved Rights</p>
             </div>
 
         </div>

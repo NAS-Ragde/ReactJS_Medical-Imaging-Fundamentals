@@ -9,7 +9,8 @@ export const ANSWERS = SERVER_ADDRESS + '/answers';
 
 export const STORAGE_KEY = {
     UUID: 'uuid',
-    USERNAME: 'username'
+    USERNAME: 'username',
+    IS_INITIAL_QUIZ_FINISHED: 'isInitialQuizFinished'
 };
 
 export const isLoggedIn = localStorage.getItem(STORAGE_KEY.UUID);

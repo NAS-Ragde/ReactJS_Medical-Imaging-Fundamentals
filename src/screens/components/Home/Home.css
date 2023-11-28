@@ -27,7 +27,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-content: center;
     background-color: #fcfcfc;
     padding: 50px 80px;
@@ -42,6 +42,7 @@
     background-color: #FFFFFF;
     border: 2px solid #E66A16;
     border-radius: 8px;
+    margin-top: 10px;
     margin-bottom: 30px;
     overflow: auto;
     max-height: calc(100vh - 150px);
@@ -132,7 +133,17 @@
     margin-top: 20px;
     background :linear-gradient( to right, #E23E02, #FF7F50, #F89B29 );
 }
-
+.linkedin-button {
+    background-image: url('/assets/linkedin.png');
+    background-size: cover;
+    background-color: #f87342;
+    border: none;
+    margin: 15px;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    cursor: pointer;
+}
 .footerText {
     color: #FCFCFC;
     font-size: 14px;
@@ -198,7 +209,7 @@
 }
 /* Line in title in survey */
 .sd-title.sd-container-modern__title {
-    box-shadow: 0px 2px 0px #E66A16 !important;
+    box-shadow: 0 2px 0 #E66A16 !important;
 }
 
 /**** Survey Content page ****/

@@ -43,8 +43,8 @@ export default function Home() {
     }, []);
 
     useEffect(() => {
-        const modalShownBefore = localStorage.getItem('modalShownBefore');
-        if (!modalShownBefore) {
+        const isInitialQuizFinished = JSON.parse(localStorage.getItem(STORAGE_KEY.IS_INITIAL_QUIZ_FINISHED).toLowerCase());
+        if (!isInitialQuizFinished) {
             setIsModalVisible(true);
         }
     }, []);
@@ -75,7 +75,7 @@ export default function Home() {
     const logout = () => {
         localStorage.removeItem(STORAGE_KEY.UUID);
         localStorage.removeItem(STORAGE_KEY.USERNAME);
-        localStorage.removeItem('modalShownBefore');
+        localStorage.removeItem(STORAGE_KEY.IS_INITIAL_QUIZ_FINISHED);
         navigate('/Login');
         navigate(0);
         // localStorage.removeItem('user');
@@ -83,12 +83,10 @@ export default function Home() {
 
     const handleSubmit = () => {
         setIsModalVisible(false);
-        localStorage.setItem('modalShownBefore', 'true');
     };
 
     const handleCancel = () => {
         setIsModalVisible(false);
-        localStorage.setItem('modalShownBefore', 'true');
     };
 
     const navigate = useNavigate();
@@ -135,7 +133,13 @@ export default function Home() {
             </div>
 
             <div className={'footer'}>
-                <p className={'footerText'}>© 2023 Nayeli A. Silva. All Reserved Rights</p>
+                <button
+                    className={'linkedin-button'}
+                    onClick={() => window.open('https://www.linkedin.com/in/ann-user1597530-sp', '_blank') }
+                >
+                </button>
+
+                <p className={'footerText'}>2023 Nayeli A. Silva. All Reserved Rights</p>
             </div>
 
         </div>

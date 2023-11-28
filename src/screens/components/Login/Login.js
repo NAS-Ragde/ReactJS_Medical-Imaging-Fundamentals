@@ -36,8 +36,9 @@ export default function Login() {
             await axios
                 .get(LOGIN + "?username=" + data.email + "&password=" + data.password)
                 .then ((response) => {
-                    localStorage.setItem(STORAGE_KEY.UUID, response.data);
                     localStorage.setItem(STORAGE_KEY.USERNAME, data.email);
+                    localStorage.setItem(STORAGE_KEY.UUID, response.data.studentUuid);
+                    localStorage.setItem(STORAGE_KEY.IS_INITIAL_QUIZ_FINISHED, response.data.initialQuizFinished);
                 })
                 .then(() => {
                     redirectUser()

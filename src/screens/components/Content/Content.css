@@ -249,6 +249,17 @@ ul {
     align-self: center;
     text-align: center;
 }
+.linkedin-button {
+    background-image: url('/assets/linkedin.png');
+    background-size: cover;
+    background-color: #f87342;
+    border: none;
+    margin: 15px;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    cursor: pointer;
+}
 
 .pagination {
     margin-top: auto;
