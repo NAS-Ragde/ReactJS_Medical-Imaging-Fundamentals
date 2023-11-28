@@ -7,8 +7,6 @@ import Content from "./screens/components/Content/Content";
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {isLoggedIn} from "./api-services/Api";
 function App() {
-
-
     return <Router>
         <Routes>
             <Route

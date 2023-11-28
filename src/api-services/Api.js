@@ -1,6 +1,6 @@
-export const DICOM4CHE_ADDRESS = 'http://localhost:8080';
-export const VIEWER_ADDRESS = 'http://localhost:8081';
-export const SERVER_ADDRESS = 'http://localhost:8088';
+export const DICOM4CHE_ADDRESS = process.env.REACT_APP_LOCAL_PACS;
+export const VIEWER_ADDRESS = process.env.REACT_APP_LOCAL_VIEWER;
+export const SERVER_ADDRESS = process.env.REACT_APP_LOCAL_SERVER;
 export const LOGIN = SERVER_ADDRESS + '/students/login';
 export const STUDENTS_REGISTRATION = SERVER_ADDRESS + '/students/register';
 export const CHAPTERS = SERVER_ADDRESS + '/chapters';
