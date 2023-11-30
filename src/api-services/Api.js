@@ -1,6 +1,6 @@
-export const DICOM4CHE_ADDRESS = process.env.REACT_APP_LOCAL_PACS;
-export const VIEWER_ADDRESS = process.env.REACT_APP_LOCAL_VIEWER;
-export const SERVER_ADDRESS = process.env.REACT_APP_LOCAL_SERVER;
+export const DICOM4CHE_ADDRESS = process.env.REACT_APP_PACS;
+export const VIEWER_ADDRESS = process.env.REACT_APP_VIEWER;
+export const SERVER_ADDRESS =  process.env.REACT_APP_SERVER;
 export const LOGIN = SERVER_ADDRESS + '/students/login';
 export const STUDENTS_REGISTRATION = SERVER_ADDRESS + '/students/register';
 export const CHAPTERS = SERVER_ADDRESS + '/chapters';
