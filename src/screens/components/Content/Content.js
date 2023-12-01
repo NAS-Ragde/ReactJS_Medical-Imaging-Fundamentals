@@ -6,7 +6,7 @@ import axios from "axios";
 import {CHAPTERS, DICOM4CHE_ADDRESS, QUIZZES, STORAGE_KEY, VIEWER_ADDRESS} from "../../../api-services/Api";
 import _ from "lodash";
 import SurveyComponent from "../Quizzes/InitialQuiz/initialQuiz";
-import {chapterStartPage} from "../Quizzes/InitialQuiz/json";
+import {chapterStartPage, initialQuizStartPage} from "../Quizzes/InitialQuiz/json";
 import DCM4CHE from './DCM4CHE.png';
 export default function Content() {
 
@@ -215,7 +215,13 @@ export default function Content() {
                                             maskClosable={false}
                                             width={1500}
                                         >
-                                            <SurveyComponent quizzes={getQuiz} quizId={selectedQuiz} startPage={chapterStartPage}/>
+                                            <SurveyComponent
+                                                quizzes={getQuiz}
+                                                quizId={selectedQuiz}
+                                                startPage={selectedQuiz === 1
+                                                    ? initialQuizStartPage
+                                                    : chapterStartPage}
+                                            />
                                         </Modal>
                                     )
                                 }
