@@ -5,7 +5,11 @@ import {CHAPTERS, QUIZZES, STORAGE_KEY} from "../../../api-services/Api";
 import {useNavigate} from "react-router-dom";
 import {Modal} from "antd";
 import SurveyComponent from "../Quizzes/InitialQuiz/initialQuiz";
-import {chapterStartPage, initialQuizCompleted, initialQuizConditionsOnCompleted} from "../Quizzes/InitialQuiz/json";
+import {
+    initialQuizCompleted,
+    initialQuizConditionsOnCompleted,
+    initialQuizStartPage
+} from "../Quizzes/InitialQuiz/json";
 import {CheckCircleTwoTone, ClockCircleTwoTone} from "@ant-design/icons";
 
 export default function Home() {
@@ -121,7 +125,7 @@ export default function Home() {
                     <SurveyComponent
                         quizzes={quizzes}
                         quizId={1}
-                        startPage={chapterStartPage}
+                        startPage={initialQuizStartPage}
                         completeHtml={initialQuizCompleted}
                         completedHtmlOnCondition={initialQuizConditionsOnCompleted}
                     />

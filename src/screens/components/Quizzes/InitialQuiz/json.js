@@ -15,7 +15,7 @@ export const chapterStartPage = {
     "elements": [
         {
             "type": "html",
-            "html": "<h4>Hello once again,</h4>You are about to start a short quiz to evaluate your recently gained knowledge from this chapter. <br>You  have 3 minutes and 20 seconds to end the quiz.<br>Click <b>Start Quiz</b> when you feel ready, good luck!"
+            "html": "<h4>Hi, </h4>You are about to start a short quiz to evaluate your recently gained knowledge from this chapter. <br>You  have 3 minutes and 20 seconds to end the quiz.<br>Click <b>Start Quiz</b> when you feel ready, good luck!"
         },
     ],
 }
