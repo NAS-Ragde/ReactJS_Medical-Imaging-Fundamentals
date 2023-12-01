@@ -3,31 +3,37 @@ import {Model} from "survey-core";
 import {Survey} from "survey-react-ui";
 import "survey-core/defaultV2.min.css";
 import "../quizzes.css";
-import {quizPattern} from "./json";
+import {
+    conditionsOnCompleted,
+    initialQuizCompleted,
+    initialQuizConditionsOnCompleted,
+    onQuizCompleted,
+    quizPattern
+} from "./json";
 import axios from "axios";
 import {ANSWERS, STORAGE_KEY} from "../../../../api-services/Api";
 
 function getQuizById(quizzes, quizId) {
-    console.error('quizzes', quizzes);
-    console.error('quizId', quizId);
-    const quiz = quizzes.find(quizData => quizData.quiz.id === quizId);
+    // console.error('quizzes', quizzes);
+    // console.error('quizId', quizId);
+    // const quiz = quizzes.find(quizData => quizData.quiz.id === quizId);
+    //
+    // if (quiz) {
+    //     return quiz.quiz;
+    // } else {
+    //     return {
+    //         title: 'test',
+    //         questions: []
+    //     }
+    // }
 
-    if (quiz) {
-        return quiz.quiz;
-    } else {
-        return {
-            title: 'test',
-            questions: []
-        }
-    }
-
-    // return quizzes.find(quizData => quizData.quiz.id === quizId).quiz
+     return quizzes.find(quizData => quizData.quiz.id === quizId).quiz
 }
 
 function SurveyComponent({quizzes, quizId, startPage}) {
     const quiz = getQuizById(quizzes, quizId);
 
-    console.log(quiz);
+    // console.error('test quiz: ',quiz, 'id: ', quizId);
 
     const json = {
         ...quizPattern,
@@ -46,8 +52,14 @@ function SurveyComponent({quizzes, quizId, startPage}) {
                     }]
                 }
             })
-        ]
-    }
+        ],
+        completedHtml: quizId === 1
+            ? initialQuizCompleted.completedHtml
+            : onQuizCompleted.completedHtml,
+        completedHtmlOnCondition: quizId === 1
+            ? initialQuizConditionsOnCompleted.completedHtmlOnCondition
+            : conditionsOnCompleted.completedHtmlOnCondition,
+    };
 
     const survey = new Model(json);
 
