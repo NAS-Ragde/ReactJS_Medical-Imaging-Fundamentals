@@ -14,26 +14,11 @@ import axios from "axios";
 import {ANSWERS, STORAGE_KEY} from "../../../../api-services/Api";
 
 function getQuizById(quizzes, quizId) {
-    // console.error('quizzes', quizzes);
-    // console.error('quizId', quizId);
-    // const quiz = quizzes.find(quizData => quizData.quiz.id === quizId);
-    //
-    // if (quiz) {
-    //     return quiz.quiz;
-    // } else {
-    //     return {
-    //         title: 'test',
-    //         questions: []
-    //     }
-    // }
-
      return quizzes.find(quizData => quizData.quiz.id === quizId).quiz
 }
 
 function SurveyComponent({quizzes, quizId, startPage}) {
     const quiz = getQuizById(quizzes, quizId);
-
-    // console.error('test quiz: ',quiz, 'id: ', quizId);
 
     const json = {
         ...quizPattern,
@@ -69,17 +54,36 @@ function SurveyComponent({quizzes, quizId, startPage}) {
 
     survey.onComplete.add((sender) => {
         const quizAnswers = Object.entries(sender.data).map(([questionId, quizAnswerText]) => {
-            const question = quiz.questions.find(question => question.id === Number(questionId));
-            const answerId = question.answers.find(answer => answer.text === quizAnswerText).id;
-
-            return {
-                question,
-                answerId
-            };
-        });
-
+                const question = quiz.questions.find(question => question.id === Number(questionId));
+                const answerId = question.answers.find(answer => answer.text === quizAnswerText).id;
+                return {
+                    question,
+                    answerId
+                };
+            }
+        );
+        onWrongAnswersHandleSuggestions(quizAnswers);
         handleStudentAnswers(quizAnswers).then(() => console.log('Answers submitted!'));
     });
+
+    function onWrongAnswersHandleSuggestions(quizAnswers) {
+        const suggestionsListSet = new Set();
+
+        quizAnswers.forEach(answer => {
+            const { question, answerId } = answer;
+
+            if (question && answerId !== question.correctAnswerId) {
+                const suggestedChapterTitle = question.suggestedChapter?.title;
+                if (suggestedChapterTitle) {
+                    suggestionsListSet.add(suggestedChapterTitle);
+                }
+            }
+        });
+        console.error(Array.from(suggestionsListSet)) ;
+    }
+
+    // const suggestions = onWrongAnswersHandleSuggestions(quizAnswers);
+    // console.error('suggestions',suggestions);
 
     const correctStr = "Correct";
     const incorrectStr = "Incorrect";
@@ -95,8 +99,9 @@ function SurveyComponent({quizzes, quizId, startPage}) {
 
     // Compares the correct answer with a given answer and returns `true` if they are equal
     function isAnswerCorrect(question) {
-        return question.correctAnswer === question.value;
+        return question.correctAnswer === question.value
     }
+
 
     // Adds "Correct" or "Incorrect" to a question title
     function changeTitle(question) {

@@ -8,7 +8,8 @@ export const quizPattern = {
     "startSurveyText": "Start Quiz",
     "pages": [],
     "completedHtml": "",
-    "completedHtmlOnCondition": []
+    "completedHtmlOnCondition": [],
+    "suggestions": []
 };
 
 export const chapterStartPage = {
@@ -34,7 +35,7 @@ export const onQuizCompleted = {
 }
 export const initialQuizCompleted = {
     "completedHtml": "<h4>Well done!, you got <b>{correctAnswers}</b> out of <b>{questionCount}</b> correct answers.</h4>" +
-        "<p>Tip: Check the following Chapter:</p> ",
+        "<p>Tip: Based on your results, explore the following content in more depth: </p> ",
 }
 
 export const initialQuizConditionsOnCompleted = {
